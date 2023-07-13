@@ -9,16 +9,16 @@ const { THREE } = window;
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   50,
-  500 / 500,
-  //window.innerWidth / window.innerHeight,
+  window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
+let container = document.getElementById("bg-title-ani");
 const renderer = new THREE.WebGLRenderer();
-renderer.setClearColor(0xdfdfdf);
+renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(500, 500);
-document.body.appendChild(renderer.domElement);
+renderer.setSize(window.innerWidth, window.innerHeight);
+container.appendChild(renderer.domElement);
 
 // Add a polygon to the scene
 const geometry = new THREE.IcosahedronGeometry(1, 0);
@@ -59,4 +59,15 @@ function render() {
   renderer.render(scene, camera);
 }
 // Call
+
+// Respond to Window Resizing
+window.addEventListener("resize", onWindowResize);
+
+// Window resizing function
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
 render();
