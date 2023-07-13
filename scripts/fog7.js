@@ -45,7 +45,7 @@ function init() {
     group = new THREE.Group();
     scene.add( group );
 
-    const geometry = new THREE.BoxGeometry();
+    const geometry = new THREE.SphereGeometry();
 
     for ( let i = 0; i < 200; i ++ ) {
 
@@ -80,10 +80,10 @@ function init() {
     renderer.shadowMap.type = THREE.PCFShadowMap;
 
     //ascii effects
-    effect = new AsciiEffect(renderer, ' .,:;|-=#', {
+    effect = new AsciiEffect(renderer, ' .,:;|-~=#', {
         invert: false
     });
-    effect.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+    effect.setSize(window.innerWidth * 0.95, window.innerHeight * 0.95);
     effect.domElement.style.color = 'white';
     effect.domElement.style.backgroundColor = 'black';
 

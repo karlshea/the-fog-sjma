@@ -101,6 +101,7 @@ class AsciiEffect {
 			oStyle.lineHeight = fLineHeight + 'px';
 			oStyle.textAlign = 'left';
 			oStyle.textDecoration = 'none';
+			oStyle.userSelect = 'none';
 
 		}
 

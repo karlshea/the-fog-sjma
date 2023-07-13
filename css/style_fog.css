@@ -96,4 +96,7 @@ a {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
   pointer-events: none;
+  color: black;
+  font-size: 75px;
+  font-family: 'Courier New', Courier, monospace;
 }
