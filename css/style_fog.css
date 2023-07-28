@@ -79,7 +79,7 @@ a {
 .act3-overlay {
   position: absolute;
   text-align: center;
-  left: 25%;
+  left: 20%;
   top: 25%;
   user-drag: none;
   -webkit-user-drag: none;

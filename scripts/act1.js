@@ -65,9 +65,13 @@ function init() {
 
   //ascii effects
   effect = new AsciiEffect(renderer, ' .,:;|-=#', {
+    scale: .82,
+    resolution: 0.4,
+    block: true,
     invert: true
   });
-  effect.setSize(window.innerWidth * .9, window.innerHeight * .9);
+  //effect.setSize(window.innerWidth * .9, window.innerHeight * .9);
+  effect.setSize(window.innerWidth, window.innerHeight);
   effect.domElement.style.color = 'white';
   effect.domElement.style.backgroundColor = 'black';
 

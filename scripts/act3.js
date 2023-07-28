@@ -28,7 +28,7 @@ function init() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xf0f0f0 );
 
-    scene.add( new THREE.AmbientLight( 0xaaaaaa ) );
+    scene.add( new THREE.AmbientLight( 0xaaaaaa, 3 ) );
 
     const light = new THREE.SpotLight( 0xffffff );
     light.position.set( 0, 25, 50 );
@@ -81,9 +81,11 @@ function init() {
 
     //ascii effects
     effect = new AsciiEffect(renderer, ' .,:;|-~=#', {
+        scale: .92,
+        resolution: 0.3,
         invert: false
     });
-    effect.setSize(window.innerWidth * 0.95, window.innerHeight * 0.95);
+    effect.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
     effect.domElement.style.color = 'white';
     effect.domElement.style.backgroundColor = 'black';
 
