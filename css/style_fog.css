@@ -13,6 +13,8 @@ body {
   font-family: "Source Code Pro", monospace;
   margin: auto;
   display: block;
+  padding: 0px;
+  margin: 0px;
 }
 
 /*Canvas style is used for styling the three.js window*/
@@ -37,7 +39,7 @@ h1 {
 }
 
 h1.title-main {
-  padding-top: 25%;
+  padding-top: 20%;
 }
 
 h2 {
@@ -81,7 +83,6 @@ a {
   text-align: center;
   left: 20%;
   top: 25%;
-  user-drag: none;
   -webkit-user-drag: none;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -90,7 +91,6 @@ a {
 }
 
 #ACT3-TEXT {
-  user-drag: none;
   -webkit-user-drag: none;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
