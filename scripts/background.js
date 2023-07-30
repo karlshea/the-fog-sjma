@@ -72,7 +72,7 @@ function init() {
   });
   //effect.setSize(window.innerWidth * .99, window.innerHeight * .99);
   effect.setSize(window.innerWidth, window.innerHeight);
-  effect.domElement.style.color = 'dimgrey';
+  effect.domElement.style.color = '#353535';
   effect.domElement.style.backgroundColor = 'black';
 
 
@@ -158,7 +158,7 @@ function init() {
     uniforms: {
        tExplosion: {
          type: "t",
-         value: THREE.ImageUtils.loadTexture('../../assets/fog6.png')
+         value: THREE.ImageUtils.loadTexture('../../assets/fog8.png')
        },
       time: { // float initialized to 0
         type: "f",
@@ -176,7 +176,7 @@ function init() {
   );
   mesh2.position.set(0, 0, 0);
   mesh2.rotation.set(0, 0, 0);
-  mesh2.scale.set(.65, .65, .15);
+  mesh2.scale.set(.85, .85, .15);
   scene.add(mesh2);
 
   // Add Orbit Controls
@@ -220,6 +220,6 @@ window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+  effect.setSize(window.innerWidth, window.innerHeight);
   render();
 }

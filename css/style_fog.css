@@ -1,6 +1,8 @@
 /* Style sheet from index.html and gtlf.html */
-
+/*
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;700&display=swap");
+*/
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 html {
   background:url(
@@ -10,7 +12,10 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs
 
 html,
 body {
+  /*
   font-family: "Source Code Pro", monospace;
+  */
+  font-family: 'Red Hat Mono', monospace;
   margin: auto;
   display: block;
   padding: 0px;
@@ -39,7 +44,9 @@ h1 {
 }
 
 h1.title-main {
-  padding-top: 20%;
+  padding-top: 12.5%;
+  font-size: 750%;
+  letter-spacing: .25em;
 }
 
 h2 {
@@ -50,15 +57,23 @@ h2 {
   padding-bottom: 20px;
 }
 
+h2.title-second {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-size: 150%;
+  font-weight: 400;
+}
+
 p {
   color: #FFFFFF;
-  width: 50%;
-  max-width: 75%;
-  font-weight: 500;
-  padding: 0px;
-  padding-left: 25%;
-  padding-bottom: 20px;
   line-height: 150%;
+}
+
+p.title-mid {
+  padding-left: 0%;
+  text-align: center;
+  margin: auto;
+  font-size: 250%;
 }
 
 p.mid {
@@ -71,11 +86,23 @@ a {
   color: #FFFFFF;
 }
 
+footer {
+  text-align: right;
+  font-weight: 100;
+  font-style: italic;
+  font-size: small;
+  position: fixed;
+  width: 50%;
+  left: 49%;
+  top: 93%;
+}
+
 #bg-title-ani {
   z-index: -1;
-  position: absolute;
+  position: fixed;
   margin: 0px;
   padding: 0px;
+  overflow: hidden;
 }
 
 .act3-overlay {
