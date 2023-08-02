@@ -71,9 +71,20 @@ function init() {
     invert: true
   });
   //effect.setSize(window.innerWidth * .9, window.innerHeight * .9);
-  effect.setSize(window.innerWidth, window.innerHeight);
+  effect.setSize(window.innerWidth, window.innerHeight*1.25);
   effect.domElement.style.color = 'white';
   effect.domElement.style.backgroundColor = 'black';
+
+  // Identify the html divs for the overlays
+  const blocker = document.getElementById("blocker");
+  const instructions = document.getElementById("instructions");
+
+  // Listen for clicks and respond by removing overlays and starting mouse look controls
+  // Listen
+  instructions.addEventListener("click", function() {
+    instructions.style.display = "none";
+    blocker.style.display = "none";
+  });
 
   //.:-+*=%@#
 

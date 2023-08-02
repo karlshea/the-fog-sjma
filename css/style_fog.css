@@ -97,6 +97,8 @@ footer {
   top: 93%;
 }
 
+/* Intro and Statement */
+
 #bg-title-ani {
   z-index: -1;
   position: fixed;
@@ -104,6 +106,70 @@ footer {
   padding: 0px;
   overflow: hidden;
 }
+
+/* Statement */
+
+.state-header {
+  padding-top: 7.5%;
+  padding-bottom: 7.5%;
+}
+
+img.statement-img {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding-top: 5%;
+}
+
+.mc-two-col {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  align-items: center;
+  width: 90%;
+}
+
+.colA {
+  padding: 2.5%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  align-items: center;
+  /*border: 1px solid green;*/
+}
+
+.text-holder {
+  
+}
+
+/* Act 1 */
+
+#blocker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+#instructions {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Act 2 */
+
+/* Act 3 */
 
 .act3-overlay {
   position: absolute;
