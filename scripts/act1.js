@@ -191,7 +191,7 @@ function init() {
   );
   mesh2.position.set(0, 2, 0);
   mesh2.rotation.set(0, 0, 0);
-  mesh2.scale.set(.35, .15, .25);
+  mesh2.scale.set(.45, .15, .35);
   scene.add(mesh2);
 
   // Add Orbit Controls
@@ -201,7 +201,7 @@ function init() {
   controls.target.set(0, 0, -0.2);
 
   // Position our camera so we can see the shape
-  camera.position.z = 20;
+  camera.position.set(0,40,10);
 
   // Add a directional light to the scene
   const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
@@ -303,6 +303,6 @@ window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+  effect.setSize(window.innerWidth, window.innerHeight*1.25);
   render();
 }

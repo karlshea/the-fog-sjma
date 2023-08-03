@@ -57,10 +57,7 @@ function makeTextFog() {
     var fogText = document.createTextNode(textBlock);
     fogP.appendChild(fogText);
     var currentDiv = document.getElementById("div1");
-    currentDiv.style.borderTopLeftRadius = getRandomInt(200)+"px";
-    currentDiv.style.borderTopRightRadius = getRandomInt(200)+"px";
-    currentDiv.style.borderBottomLeftRadius = getRandomInt(200)+"px";
-    currentDiv.style.borderBottomRightRadius = getRandomInt(200)+"px";
+    currentDiv.style.height = "auto";
     var parentDiv = document.getElementById("mc");
     currentDiv.appendChild(fogP);
     window.scrollTo(0,-100);
