@@ -108,15 +108,14 @@ footer {
 /* Statement */
 
 .state-header {
-  padding-top: 7.5%;
-  padding-bottom: 7.5%;
+  padding-top: 10%;
+  padding-bottom: 5%;
 }
 
 img.statement-img {
   display: flex;
   margin: auto;
   width: 100%;
-  padding-top: 5%;
 }
 
 .mc-two-col {

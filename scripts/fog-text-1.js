@@ -115,7 +115,7 @@ function allText() {
 function makeTextFog() {
     buildText();
     var fogP = document.createElement("p");
-    fogP.style.padding = "5%";
+    fogP.style.padding = "10%";
     //fogP.style.paddingBottom = "10%";
     fogP.style.margin = 0;
     fogP.style.textAlign = "center";
