@@ -5,9 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 html {
-  background:url(
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAADBJREFUKFNjZGBg+M9ABGAcZAptbW0ZDh8+jOJyFDeCFIAASBG6YrhCbKYgiw2grwHI+BkBz1KEgwAAAABJRU5ErkJggg==
-  ) repeat;
+  background-color: black;
 }
 
 html,
@@ -170,8 +168,8 @@ img.statement-img {
 .act3-overlay {
   position: absolute;
   text-align: center;
-  left: 20%;
-  top: 25%;
+  margin: auto;
+  top: 30%;
   -webkit-user-drag: none;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */

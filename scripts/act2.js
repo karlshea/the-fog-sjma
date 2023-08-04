@@ -10,8 +10,10 @@ import {
   PointerLockControls
 } from "../src/PointerLockControls.js";
 
+import { AsciiEffect } from '../src/AsciiEffect.js';
+
 // Establish variables
-let camera, scene, renderer, controls, material;
+let camera, scene, renderer, controls, material, effect;
 
 const objects = [];
 let raycaster;
@@ -191,7 +193,7 @@ function init() {
   // Immediately use the texture for material creation
   const material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
   // Create plane geometry
-  const geometry = new THREE.PlaneGeometry( 32, 16 );
+  const geometry = new THREE.PlaneGeometry( 48, 24 );
   // Apply image texture to plane geometry
   const plane = new THREE.Mesh( geometry, material );
   // Position plane geometry
@@ -209,7 +211,7 @@ function init() {
   // Apply image texture to plane geometry
   const plane2 = new THREE.Mesh( geometry2, material2 );
   // Position plane geometry
-  plane2.position.set(0 , 100 , -200);
+  plane2.position.set(0 , 50 , -200);
   // Place plane geometry
   scene.add( plane2 );
 
@@ -219,7 +221,19 @@ function init() {
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  //document.body.appendChild(renderer.domElement);
+
+  //ascii effects
+  effect = new AsciiEffect(renderer, ' .,:;|-~=#', {
+    scale: .92,
+    resolution: 0.3,
+    invert: true
+  });
+  effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
+  effect.domElement.style.color = 'white';
+  effect.domElement.style.backgroundColor = 'black';
+  effect.domElement.style.overflow = "hidden";
+  document.body.appendChild(effect.domElement);
 
   // Listen for window resizing
   window.addEventListener("resize", onWindowResize);
@@ -229,8 +243,7 @@ function init() {
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
 }
 
 // Animation function
@@ -282,5 +295,5 @@ function animate() {
 
   prevTime = time;
 
-  renderer.render(scene, camera);
+  effect.render(scene, camera);
 }

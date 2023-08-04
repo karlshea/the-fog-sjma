@@ -75,6 +75,13 @@ function init() {
   effect.domElement.style.color = 'white';
   effect.domElement.style.backgroundColor = 'black';
 
+  //.:-+*=%@#
+
+  // Special case: append effect.domElement, instead of renderer.domElement.
+  // AsciiEffect creates a custom domElement (a div container) where the ASCII elements are placed.
+
+  document.body.appendChild(effect.domElement);
+
   // Identify the html divs for the overlays
   const blocker = document.getElementById("blocker");
   const instructions = document.getElementById("instructions");
@@ -86,13 +93,7 @@ function init() {
     blocker.style.display = "none";
   });
 
-  //.:-+*=%@#
-
-  // Special case: append effect.domElement, instead of renderer.domElement.
-  // AsciiEffect creates a custom domElement (a div container) where the ASCII elements are placed.
-
-  document.body.appendChild(effect.domElement);
-
+  window.addEventListener( 'keyup', onKeyUp );
 
   // Material to be added to preanimated model
   var newMaterial = new THREE.MeshStandardMaterial({
@@ -305,4 +306,13 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
   effect.setSize(window.innerWidth, window.innerHeight*1.25);
   render();
+}
+
+function onKeyUp( event ) {
+
+  if (event.keyCode === 27 ) {
+      instructions.style.display = "";
+      blocker.style.display = "";
+  };
+
 }

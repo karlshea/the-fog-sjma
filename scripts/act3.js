@@ -85,12 +85,24 @@ function init() {
         resolution: 0.3,
         invert: false
     });
-    effect.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+    effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
     effect.domElement.style.color = 'white';
     effect.domElement.style.backgroundColor = 'black';
+    effect.domElement.style.overflow = "hidden";
 
     container.appendChild(effect.domElement);
     //container.appendChild( renderer.domElement );
+
+    // Identify the html divs for the overlays
+    const blocker = document.getElementById("blocker");
+    const instructions = document.getElementById("instructions");
+
+    // Listen for clicks and respond by removing overlays and starting mouse look controls
+    // Listen
+    instructions.addEventListener("click", function() {
+        instructions.style.display = "none";
+        blocker.style.display = "none";
+    });
 
     controls = new DragControls( [ ... objects ], camera, effect.domElement );
     controls.addEventListener( 'drag', render );
@@ -102,7 +114,7 @@ function init() {
     document.addEventListener( 'click', onClick );
     window.addEventListener( 'keydown', onKeyDown );
     window.addEventListener( 'keyup', onKeyUp );
-
+    
     render();
 
 }
@@ -111,8 +123,8 @@ function onWindowResize() {
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
+    //renderer.setSize( window.innerWidth, window.innerHeight );
 
     render();
 
@@ -124,9 +136,13 @@ function onKeyDown( event ) {
 
 }
 
-function onKeyUp() {
+function onKeyUp( event ) {
 
-    enableSelection = false;
+    if (event.keyCode === 27 ) {
+        instructions.style.display = "";
+        blocker.style.display = "";
+    };
+    //enableSelection = false;
 
 }
 
