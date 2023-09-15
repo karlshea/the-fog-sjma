@@ -1,47 +1,78 @@
-// Art 109 Three.js Demo Site
-// client6.js
-// A three.js scene which loads a static and animated model.
-
-// The pink model is static (contains no animation data in the file)
-// It is animated manually in Three.js
-
-// The green model is preanimated (contains animation data created in blender)
-// 3D model is from Blender default
-
-// Implements Orbit controls and font loader
+// Fog Act 1
 
 // Import required source code
 // Import three.js core
 import * as THREE from "../build/three.module.js";
 
 // Import add-ons for glTF models, orbit controls, and font loader
-import {
-  OrbitControls
-} from "../src/OrbitControls.js";
-import {
-  GLTFLoader
-} from "../src/GLTFLoader.js";
-import {
-  FontLoader
-} from "../src/FontLoader.js"
-import {
-  AsciiEffect
-} from '../src/AsciiEffect.js';
+import { OrbitControls } from "../src/OrbitControls.js";
+import { FontLoader } from "../src/FontLoader.js";
+import { AsciiEffect } from "../src/AsciiEffect.js";
 
-let container, scene, camera, effect, renderer, mesh, mesh2, mesh3, mixer, controls, clock;
-
-let ticker = 0;
-
-let material, material2;
+let container,
+  scene,
+  camera,
+  effect,
+  renderer,
+  material,
+  material2,
+  mesh,
+  mesh2,
+  message,
+  message2,
+  message3,
+  shapes,
+  shapes2,
+  shapes3,
+  mixer,
+  text,
+  text2,
+  text3,
+  controls,
+  clock,
+  color,
+  geometry,
+  geometry2,
+  geometry3,
+  xMid,
+  xMid2,
+  xMid3,
+  matDark;
 
 let start = Date.now();
+let ticker = 0;
+let loader3 = new FontLoader();
+
+let fogTexts = [
+  "In summer, fog", 
+  "increases the dangers", 
+  "to shipping.",
+  "The fog had now",
+   "buried all heaven.",
+   " ",
+  "The fog was peopled", 
+  "with phantoms.",
+  " ",
+  "His head swam;", 
+  "the fog and smoke", 
+  "stupefied him.",
+  "Mists and fogs militate", 
+  "against observation", 
+  "by aircraft...",
+  "...especially as we",
+  "were compassed round", 
+  "by a very thick fog.",
+  "Come in, or the fog", 
+  "will get into the house.",
+  " "
+];
+
 
 // Call init and animate functions (defined below)
 init();
 animate();
 
 function init() {
-
   //Identify div in HTML to place scene
   container = document.getElementById("space");
 
@@ -58,24 +89,18 @@ function init() {
   );
   renderer = new THREE.WebGLRenderer();
   renderer.setClearColor(0x000000);
-  //renderer.setPixelRatio(window.devicePixelRatio);
-  //renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
-  // Add scene to gltf.html
-  //container.appendChild(renderer.domElement);
 
   //ascii effects
-  effect = new AsciiEffect(renderer, ' .,:;|-=#', {
-    scale: .82,
+  effect = new AsciiEffect(renderer, " .,:;|-=#", {
+    scale: 0.82,
     resolution: 0.4,
     block: true,
-    invert: true
+    invert: true,
   });
   //effect.setSize(window.innerWidth * .9, window.innerHeight * .9);
-  effect.setSize(window.innerWidth, window.innerHeight*1.25);
-  effect.domElement.style.color = 'white';
-  effect.domElement.style.backgroundColor = 'black';
-
-  //.:-+*=%@#
+  effect.setSize(window.innerWidth, window.innerHeight * 1.25);
+  effect.domElement.style.color = "white";
+  effect.domElement.style.backgroundColor = "black";
 
   // Special case: append effect.domElement, instead of renderer.domElement.
   // AsciiEffect creates a custom domElement (a div container) where the ASCII elements are placed.
@@ -87,122 +112,68 @@ function init() {
   const instructions = document.getElementById("instructions");
 
   // Listen for clicks and respond by removing overlays and starting mouse look controls
-  // Listen
-  instructions.addEventListener("click", function() {
+  instructions.addEventListener("click", function () {
     instructions.style.display = "none";
     blocker.style.display = "none";
   });
 
-  window.addEventListener( 'keyup', onKeyUp );
+  window.addEventListener("keyup", onKeyUp);
 
-  // Material to be added to preanimated model
-  var newMaterial = new THREE.MeshStandardMaterial({
-    color: 0x2E5939
-  });
-
-  // Load preanimated model, add material, and add it to the scene
-  // const loader = new GLTFLoader().load(
-  //   "../../assets/blend_def_ani.glb",
-  //   function(gltf) {
-  //     gltf.scene.traverse(function(child) {
-  //       if (child.isMesh) {
-  //         child.material = newMaterial;
-  //       }
-  //     });
-  //     // set position and scale
-  //     mesh = gltf.scene;
-  //     mesh.position.set(4, 0, 0);
-  //     mesh.rotation.set(0, 0, 0);
-  //     mesh.scale.set(1, 1, 1);
-  //     // Add model to scene
-  //     scene.add(mesh);
-  //     //Check for and play animation frames
-  //     mixer = new THREE.AnimationMixer(mesh);
-  //     gltf.animations.forEach((clip) => {
-  //       mixer.clipAction(clip).play();
-  //     });
-  //
-  //   },
-  //   undefined,
-  //   function(error) {
-  //     console.error(error);
-  //   }
-  // );
-
-  // Material to be added to static model
-  // var newMaterial2 = new THREE.MeshStandardMaterial({
-  //   color: 0xdfdfdf
-  // });
-  //
-  // // Load static model, add material, and add it to the scene
-  // const loader2 = new GLTFLoader().load(
-  //   "../../assets/blend_def.glb",
-  //   function(gltf) {
-  //     // Scan loaded model for mesh and apply defined material if mesh is present
-  //     gltf.scene.traverse(function(child) {
-  //       if (child.isMesh) {
-  //         child.material = material;
-  //       }
-  //     });
-  //     // set position and scale
-  //     mesh = gltf.scene;
-  //     mesh.position.set(4, 0, 0);
-  //     mesh.rotation.set(0, 0, 0);
-  //     mesh.scale.set(1, 1, 1);
-  //     // Add model to scene
-  //     scene.add(mesh);
-  //
-  //   },
-  //   undefined,
-  //   function(error) {
-  //     console.error(error);
-  //   }
-  // );
-
-  var newMaterial2 = new THREE.MeshStandardMaterial({
-    color: 0xdfdfdf,
-    wireframe: true
-  });
-
-  newMaterial = new THREE.ShaderMaterial({
-    vertexShader: document.getElementById('vertexShader').textContent,
-    fragmentShader: document.getElementById('fragmentShader').textContent
-  });
-
+  //Moving Materials
   material = new THREE.ShaderMaterial({
-
     uniforms: {
-       tExplosion: {
-         type: "t",
-         value: THREE.ImageUtils.loadTexture('../../assets/fog6.png')
-       },
-      time: { // float initialized to 0
+      tExplosion: {
+        type: "t",
+        value: THREE.ImageUtils.loadTexture("../../assets/fog6.png"),
+      },
+      time: {
+        // float initialized to 0
         type: "f",
-        value: 0.0
-      }
+        value: 0.0,
+      },
     },
-    vertexShader: document.getElementById('vertexShader').textContent,
-    fragmentShader: document.getElementById('fragmentShader').textContent
-
+    vertexShader: document.getElementById("vertexShader").textContent,
+    fragmentShader: document.getElementById("fragmentShader").textContent,
+    side: THREE.DoubleSide,
   });
 
-  mesh2 = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(20, 50),
-    material
-  );
+  material2 = new THREE.ShaderMaterial({
+    uniforms: {
+      tExplosion: {
+        type: "t",
+        value: THREE.ImageUtils.loadTexture("../../assets/fog6id.png"),
+      },
+      time: {
+        // float initialized to 0
+        type: "f",
+        value: 10.0,
+      },
+    },
+    vertexShader: document.getElementById("vertexShader").textContent,
+    fragmentShader: document.getElementById("fragmentShader").textContent,
+    side: THREE.DoubleSide,
+  });
+
+  //Objects
+  mesh2 = new THREE.Mesh(new THREE.IcosahedronGeometry(20, 50), material);
   mesh2.position.set(0, 2, 0);
   mesh2.rotation.set(0, 0, 0);
-  mesh2.scale.set(.45, .15, .35);
+  mesh2.scale.set(0.45, 0.25, 0.35);
   scene.add(mesh2);
+
+  mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(40, 80), material2);
+  mesh.position.set(0, 0, 0);
+  mesh.scale.set(1.25, 1.25, 1.25);
+  scene.add(mesh);
 
   // Add Orbit Controls
   controls = new OrbitControls(camera, effect.domElement);
   controls.minDistance = 3;
-  controls.maxDistance = 25;
+  controls.maxDistance = 40;
   controls.target.set(0, 0, -0.2);
 
   // Position our camera so we can see the shape
-  camera.position.set(0,40,10);
+  camera.position.set(0, 40, 10);
 
   // Add a directional light to the scene
   const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
@@ -213,40 +184,50 @@ function init() {
   scene.add(ambientLight);
 
   // Add Text under models
-  const loader3 = new FontLoader();
-  loader3.load('../../assets/helvetiker_regular.typeface.json', function(font) {
-    // Define font color
-    const color = 0xdfdfdf;
-    // Define font material
-    const matDark = new THREE.LineBasicMaterial({
-      color: color,
-      side: THREE.DoubleSide
-    });
-    // Generate and place left side text
-    const message = "The fog had now";
-    const shapes = font.generateShapes(message, 1.75);
-    const geometry = new THREE.ShapeGeometry(shapes);
-    geometry.computeBoundingBox();
-    const xMid = -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
-    geometry.translate(xMid, 0, 0);
-    const text = new THREE.Mesh(geometry, matDark);
-    text.position.set(0, -5.5, 0);
-    scene.add(text);
+  loader3.load(
+    "../../assets/helvetiker_regular.typeface.json",
+    function (font) {
+      // Define font color
+      color = 0xdfdfdf;
+      // Define font material
+      matDark = new THREE.LineBasicMaterial({
+        color: color,
+        side: THREE.DoubleSide,
+      });
+      // Generate and place left side text
+      message = "The fog had now";
+      shapes = font.generateShapes(message, 1.75);
+      geometry = new THREE.ShapeGeometry(shapes);
+      geometry.computeBoundingBox();
+      xMid = -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+      geometry.translate(xMid, 0, 0);
+      text = new THREE.Mesh(geometry, matDark);
+      text.position.set(0, -5.5, 0);
+      //scene.add(text);
 
-    // Generate and place right side text
-    const message2 = "buried all heaven.";
-    const shapes2 = font.generateShapes( message2, 1.75 );
-    const geometry2 = new THREE.ShapeGeometry( shapes2 );
-    geometry2.computeBoundingBox();
-    const xMid2 = - 0.5 * ( geometry2.boundingBox.max.x - geometry2.boundingBox.min.x );
-    geometry2.translate( xMid2, 0, 0 );
-    const text2 = new THREE.Mesh( geometry2, matDark );
-    text2.position.set(0, -8 , 0);
-    scene.add( text2 );
-  });
+      // Generate and place right side text
+      message2 = "buried all heaven.";
+      shapes2 = font.generateShapes(message2, 1.75);
+      geometry2 = new THREE.ShapeGeometry(shapes2);
+      geometry2.computeBoundingBox();
+      xMid2 = -0.5 * (geometry2.boundingBox.max.x - geometry2.boundingBox.min.x);
+      geometry2.translate(xMid2, 0, 0);
+      text2 = new THREE.Mesh(geometry2, matDark);
+      text2.position.set(0, -8, 0);
+      //scene.add(text2);
 
-
-
+      // Generate and place right side text
+      message3 = "buried all heaven.";
+      shapes3 = font.generateShapes(message3, 1.75);
+      geometry3 = new THREE.ShapeGeometry(shapes3);
+      geometry3.computeBoundingBox();
+      xMid3 = -0.5 * (geometry3.boundingBox.max.x - geometry3.boundingBox.min.x);
+      geometry3.translate(xMid3, 0, 0);
+      text3 = new THREE.Mesh(geometry3, matDark);
+      text3.position.set(0, -8, 0);
+      //scene.add(text2);
+    }
+  );
 }
 
 // Define animate loop
@@ -260,41 +241,84 @@ function animate() {
 
 // Define the render loop
 function render() {
-  material.uniforms[ 'time' ].value = .00025 * ( Date.now() - start );
-  effect.render(scene, camera);
+  material.uniforms["time"].value = 0.00025 * (Date.now() - start);
+  material2.uniforms["time"].value = 0.00025 * (Date.now() - start);
   manualAnimation();
+  effect.render(scene, camera);
 }
 
 //Manual Looping animation for mesh2
 function manualAnimation() {
-  // if (ticker == 0) {
-  //   if (mesh2.scale.x < 2) {
-  //     mesh2.scale.x += 0.00341;
-  //   }
-  //   if (mesh2.scale.x >= 2 && mesh2.scale.y < 2) {
-  //     mesh2.scale.y += 0.00341;
-  //   }
-  //   if (mesh2.scale.x >= 2 && mesh2.scale.y >= 2 && mesh2.scale.z < 2) {
-  //     mesh2.scale.z += 0.00341;
-  //   }
-  //   if (mesh2.scale.x >= 2 && mesh2.scale.y >= 2 && mesh2.scale.z >= 2) {
-  //     ticker = 1;
-  //   }
-  // }
-  // if (ticker == 1) {
-  //   if (mesh2.scale.x >= 2 && mesh2.scale.y >= 2 && mesh2.scale.z > 1) {
-  //     mesh2.scale.z -= 0.00341;
-  //   }
-  //   if (mesh2.scale.x >= 2 && mesh2.scale.y > 1 && mesh2.scale.z <= 1) {
-  //     mesh2.scale.y -= 0.00341;
-  //   }
-  //   if (mesh2.scale.x > 1 && mesh2.scale.y <= 1 && mesh2.scale.z <= 1) {
-  //     mesh2.scale.x -= 0.00341;
-  //   }
-  //   if (mesh2.scale.x <= 1 && mesh2.scale.y <= 1 && mesh2.scale.z <= 1) {
-  //     ticker = 0;
-  //   }
-  // }
+
+  if (ticker == 0) {
+     if (text.position.z > 1) {
+       text.position.z -= 0.005;
+       text2.position.z -= 0.005;
+       text3.position.z -= 0.005;
+     } else if (text.position.z <= 1){
+      text.geometry.dispose();
+      text.material.dispose();
+      scene.remove( text );
+      text2.geometry.dispose();
+      text2.material.dispose();
+      scene.remove( text2 );
+      text3.geometry.dispose();
+      text3.material.dispose();
+      scene.remove( text3 );
+       let newText = Math.floor(Math.random() * (fogTexts.length/3));
+       console.log(fogTexts[newText*3]+"\n"+fogTexts[(newText*3)+1]+"\n"+fogTexts[(newText*3)+2]);
+       loader3.load('../../assets/helvetiker_regular.typeface.json', function(font) {
+         // Define font color
+         color = 0xdfdfdf;
+         // Define font material
+         matDark = new THREE.LineBasicMaterial({
+           color: color,
+           side: THREE.DoubleSide
+         });
+         //line 1
+         message = fogTexts[newText*3];
+         shapes = font.generateShapes(message, 1.25);
+         geometry = new THREE.ShapeGeometry(shapes);
+         geometry.computeBoundingBox();
+         xMid = -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+         geometry.translate(xMid, 0, 0);
+         text = new THREE.Mesh(geometry, matDark);
+         text.position.set(0, 1.75, 1);
+         //text.rotation.set(-1.5708, 0 , 0);
+         scene.add(text);
+         //line 2
+         message2 = fogTexts[(newText*3)+1];
+         shapes2 = font.generateShapes(message2, 1.25);
+         geometry2 = new THREE.ShapeGeometry(shapes2);
+         geometry2.computeBoundingBox();
+         xMid2 = -0.5 * (geometry2.boundingBox.max.x - geometry2.boundingBox.min.x);
+         geometry2.translate(xMid2, 0, 0);
+         text2 = new THREE.Mesh(geometry2, matDark);
+         text2.position.set(0, 0, 1);
+         scene.add(text2);
+         //line 3
+         message3 = fogTexts[(newText*3)+2];
+         shapes3 = font.generateShapes(message3, 1.25);
+         geometry3 = new THREE.ShapeGeometry(shapes3);
+         geometry3.computeBoundingBox();
+         xMid3 = -0.5 * (geometry3.boundingBox.max.x - geometry3.boundingBox.min.x);
+         geometry3.translate(xMid3, 0, 0);
+         text3 = new THREE.Mesh(geometry3, matDark);
+         text3.position.set(0, -1.75, 1);
+         scene.add(text3);
+       });
+       ticker = 1;
+     }
+   }
+   if (ticker == 1) {
+     if (text.position.z < 12) {
+       text.position.z += 0.005;
+       text2.position.z += 0.005;
+       text3.position.z += 0.005;
+     } else if (text.position.z > 12) {
+       ticker = 0;
+     }
+   }
 }
 
 // Respond to Window Resizing
@@ -304,15 +328,13 @@ window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  effect.setSize(window.innerWidth, window.innerHeight*1.25);
+  effect.setSize(window.innerWidth, window.innerHeight * 1.25);
   render();
 }
 
-function onKeyUp( event ) {
-
-  if (event.keyCode === 27 ) {
-      instructions.style.display = "";
-      blocker.style.display = "";
-  };
-
+function onKeyUp(event) {
+  if (event.keyCode === 27) {
+    instructions.style.display = "";
+    blocker.style.display = "";
+  }
 }
