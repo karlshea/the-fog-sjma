@@ -243,12 +243,12 @@ function animate() {
 function render() {
   material.uniforms["time"].value = 0.00025 * (Date.now() - start);
   material2.uniforms["time"].value = 0.00025 * (Date.now() - start);
-  manualAnimation();
+  textAnimation1();
   effect.render(scene, camera);
 }
 
 //Manual Looping animation for mesh2
-function manualAnimation() {
+function textAnimation1() {
 
   if (ticker == 0) {
      if (text.position.z > 1) {
@@ -269,7 +269,8 @@ function manualAnimation() {
        console.log(fogTexts[newText*3]+"\n"+fogTexts[(newText*3)+1]+"\n"+fogTexts[(newText*3)+2]);
        loader3.load('../../assets/helvetiker_regular.typeface.json', function(font) {
          // Define font color
-         color = 0xdfdfdf;
+         //color = 0xdfdfdf;
+         color = 0x757575;
          // Define font material
          matDark = new THREE.LineBasicMaterial({
            color: color,
