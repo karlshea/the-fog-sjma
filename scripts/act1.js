@@ -21,13 +21,22 @@ let container,
   message,
   message2,
   message3,
+  messageB,
+  messageB2,
+  messageB3,
   shapes,
   shapes2,
   shapes3,
+  shapesB,
+  shapesB2,
+  shapesB3,
   mixer,
   text,
   text2,
   text3,
+  textB,
+  textB2,
+  textB3,
   controls,
   clock,
   color,
@@ -37,10 +46,17 @@ let container,
   xMid,
   xMid2,
   xMid3,
+  geometryB,
+  geometryB2,
+  geometryB3,
+  xMidB,
+  xMidB2,
+  xMidB3,
   matDark;
 
 let start = Date.now();
 let ticker = 0;
+let ticker2 = 0;
 let loader3 = new FontLoader();
 
 let fogTexts = [
@@ -67,6 +83,29 @@ let fogTexts = [
   " "
 ];
 
+let fogTextsB = [
+  "Could see nothing",
+  "in the fog.",
+  " ",
+  "fog gives to things",
+  "exaggerated dimensions and",
+  "an unnatural appearance.",
+  "Still fog, which the",
+  "sunrise cannot pierce.",
+  " ",
+  "as though fixing upon",
+  "one unshakable solidity",
+  "in a world of fog",
+  "estimates frequently exceed",
+  "the correct range when",
+  "made during foggy weather",
+  "Here the fog prevents",
+  "the enemy from being",
+  "discovered in time",
+  "friction and the fog of",
+  "war will always be the chief",
+  "characteristic of real war"
+]
 
 // Call init and animate functions (defined below)
 init();
@@ -194,7 +233,7 @@ function init() {
         color: color,
         side: THREE.DoubleSide,
       });
-      // Generate and place left side text
+      // Generate side one line one
       message = "The fog had now";
       shapes = font.generateShapes(message, 1.75);
       geometry = new THREE.ShapeGeometry(shapes);
@@ -205,7 +244,7 @@ function init() {
       text.position.set(0, -5.5, 0);
       //scene.add(text);
 
-      // Generate and place right side text
+      // Generate side one line two
       message2 = "buried all heaven.";
       shapes2 = font.generateShapes(message2, 1.75);
       geometry2 = new THREE.ShapeGeometry(shapes2);
@@ -216,7 +255,7 @@ function init() {
       text2.position.set(0, -8, 0);
       //scene.add(text2);
 
-      // Generate and place right side text
+      // Generate side one line three
       message3 = "buried all heaven.";
       shapes3 = font.generateShapes(message3, 1.75);
       geometry3 = new THREE.ShapeGeometry(shapes3);
@@ -226,6 +265,42 @@ function init() {
       text3 = new THREE.Mesh(geometry3, matDark);
       text3.position.set(0, -8, 0);
       //scene.add(text2);
+
+      // Generate side two line one
+      messageB = "The fog had now";
+      shapesB = font.generateShapes(messageB, 1.75);
+      geometryB = new THREE.ShapeGeometry(shapesB);
+      geometryB.computeBoundingBox();
+      xMidB = -0.5 * (geometryB.boundingBox.max.x - geometryB.boundingBox.min.x);
+      geometryB.translate(xMidB, 0, 0);
+      textB = new THREE.Mesh(geometryB, matDark);
+      textB.position.set(0, -10, 0);
+      //textB.position.rotation(3.14159,0,0);
+      //scene.add(textB);
+
+      // Generate side two line two
+      messageB2 = "buried all heaven.";
+      shapesB2 = font.generateShapes(messageB2, 1.75);
+      geometryB2 = new THREE.ShapeGeometry(shapesB2);
+      geometryB2.computeBoundingBox();
+      xMidB2 = -0.5 * (geometryB2.boundingBox.max.x - geometryB2.boundingBox.min.x);
+      geometryB2.translate(xMidB2, 0, 0);
+      textB2 = new THREE.Mesh(geometryB2, matDark);
+      textB2.position.set(0, -12, 0);
+      //textB2.position.rotation(3.14159,0,0);
+      //scene.add(textB2);
+
+      // Generate side two line three
+      messageB3 = "buried all heaven.";
+      shapesB3 = font.generateShapes(messageB3, 1.75);
+      geometryB3 = new THREE.ShapeGeometry(shapesB3);
+      geometryB3.computeBoundingBox();
+      xMidB3 = -0.5 * (geometryB3.boundingBox.max.x - geometryB3.boundingBox.min.x);
+      geometryB3.translate(xMidB3, 0, 0);
+      textB3 = new THREE.Mesh(geometryB3, matDark);
+      textB3.position.set(0, -14, 0);
+      //textB3.position.rotation(3.14159,0,0);
+      //scene.add(textB3);
     }
   );
 }
@@ -244,10 +319,11 @@ function render() {
   material.uniforms["time"].value = 0.00025 * (Date.now() - start);
   material2.uniforms["time"].value = 0.00025 * (Date.now() - start);
   textAnimation1();
+  textAnimation2();
   effect.render(scene, camera);
 }
 
-//Manual Looping animation for mesh2
+//text one animation
 function textAnimation1() {
 
   if (ticker == 0) {
@@ -318,6 +394,83 @@ function textAnimation1() {
        text3.position.z += 0.005;
      } else if (text.position.z > 12) {
        ticker = 0;
+     }
+   }
+}
+
+//side two animation
+function textAnimation2() {
+
+  if (ticker2 == 0) {
+     if (textB.position.z < 1) {
+       textB.position.z += 0.005;
+       textB2.position.z += 0.005;
+       textB3.position.z += 0.005;
+     } else if (textB.position.z >= 1){
+      textB.geometry.dispose();
+      textB.material.dispose();
+      scene.remove( textB );
+      textB2.geometry.dispose();
+      textB2.material.dispose();
+      scene.remove( textB2 );
+      textB3.geometry.dispose();
+      textB3.material.dispose();
+      scene.remove( textB3 );
+       let newTextB = Math.floor(Math.random() * (fogTextsB.length/3));
+       console.log(fogTextsB[newTextB*3]+"\n"+fogTextsB[(newTextB*3)+1]+"\n"+fogTextsB[(newTextB*3)+2]);
+       loader3.load('../../assets/helvetiker_regular.typeface.json', function(font) {
+         // Define font color
+         //color = 0xdfdfdf;
+         color = 0x757575;
+         // Define font material
+         matDark = new THREE.LineBasicMaterial({
+           color: color,
+           side: THREE.DoubleSide
+         });
+         //line 1
+         messageB = fogTextsB[newTextB*3];
+         shapesB = font.generateShapes(messageB, 1.25);
+         geometryB = new THREE.ShapeGeometry(shapesB);
+         geometryB.computeBoundingBox();
+         xMidB = -0.5 * (geometryB.boundingBox.max.x - geometryB.boundingBox.min.x);
+         geometryB.translate(xMidB, 0, 0);
+         textB = new THREE.Mesh(geometryB, matDark);
+         textB.position.set(0, 1.75, 1);
+         textB.rotation.set(0,3.14159,0);
+         scene.add(textB);
+         //line 2
+         messageB2 = fogTextsB[(newTextB*3)+1];
+         shapesB2 = font.generateShapes(messageB2, 1.25);
+         geometryB2 = new THREE.ShapeGeometry(shapesB2);
+         geometryB2.computeBoundingBox();
+         xMidB2 = -0.5 * (geometryB2.boundingBox.max.x - geometryB2.boundingBox.min.x);
+         geometryB2.translate(xMidB2, 0, 0);
+         textB2 = new THREE.Mesh(geometryB2, matDark);
+         textB2.position.set(0, 0, 1);
+         textB2.rotation.set(0,3.14159,0);
+         scene.add(textB2);
+         //line 3
+         messageB3 = fogTextsB[(newTextB*3)+2];
+         shapesB3 = font.generateShapes(messageB3, 1.25);
+         geometryB3 = new THREE.ShapeGeometry(shapesB3);
+         geometryB3.computeBoundingBox();
+         xMidB3 = -0.5 * (geometryB3.boundingBox.max.x - geometryB3.boundingBox.min.x);
+         geometryB3.translate(xMidB3, 0, 0);
+         textB3 = new THREE.Mesh(geometryB3, matDark);
+         textB3.position.set(0, -1.75, 1);
+         textB3.rotation.set(0,3.14159,0);
+         scene.add(textB3);
+       });
+       ticker2 = 1;
+     }
+   }
+   if (ticker2 == 1) {
+     if (textB.position.z > -12) {
+       textB.position.z -= 0.005;
+       textB2.position.z -= 0.005;
+       textB3.position.z -= 0.005;
+     } else if (textB.position.z < 12) {
+       ticker2 = 0;
      }
    }
 }
