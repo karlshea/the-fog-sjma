@@ -205,6 +205,21 @@ function init() {
   mesh.scale.set(1.25, 1.25, 1.25);
   scene.add(mesh);
 
+  //graphs
+  // Load image as texture
+  const textureI = new THREE.TextureLoader().load( '../../assets/graph_1_t.png' );
+  // Immediately use the texture for material creation
+  const materialI = new THREE.MeshBasicMaterial( { map: textureI, side: THREE.DoubleSide, transparent: true } );
+  // Create plane geometry
+  const geometryI = new THREE.PlaneGeometry( 24, 24 );
+  // Apply image texture to plane geometry
+  const planeI = new THREE.Mesh( geometryI, materialI );
+  // Position plane geometry
+  planeI.position.set(0 , 15 , -50);
+  //planeI.rotation.set(-1.5708,0,0);
+  // Place plane geometry
+  scene.add( planeI );
+
   // Add Orbit Controls
   controls = new OrbitControls(camera, effect.domElement);
   controls.minDistance = 3;

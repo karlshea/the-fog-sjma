@@ -36,7 +36,7 @@ interests and distractions
 ---
 Extended periods of fog
 can have large economic
-impacts...
+impacts.
 ---
 Fogs can pose a significant
 threat to public safety...
@@ -94,8 +94,49 @@ to determine the volumetric
 size of the clearings that
 could be created in the fog
 ---
+All methods of fog dissipation
+by ground-based equipment are
+presently experimental.
+---
+FIDO was a technique of fog 
+dissipation over aircraft runways
+developed by the British
+---
+Fog dissipation by charge
+and electric field has
+become a research hotspot
+---
+A practical test was made on an 
+actual fog using a 1OO ft pipe
+fitted with the special nozzles
+---
 
+horror fog:
 
+  "The fog had now",
+   "buried all heaven.",
+   " ",
+  "The fog was peopled", 
+  "with phantoms.",
+  " ",
+  "His head swam;", 
+  "the fog and smoke", 
+  "stupefied him.",
+
+  ,
+  "Come in, or the fog", 
+  "will get into the house.",
+  " "
+
+  "Could see nothing",
+  "in the fog.",
+  " ",
+  "Still fog, which the",
+  "sunrise cannot pierce.",
+  " ",
+  "as though fixing upon",
+  "one unshakable solidity",
+  "in a world of fog",
 
 
 
