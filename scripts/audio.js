@@ -46,7 +46,7 @@ window.addEventListener("click", (event) => {
     brownNoiseSource.buffer = brownNoiseBuffer;
     brownNoiseSource.loop = true;
     const noiseGain = audioContext.createGain();
-    noiseGain.gain.value = 0.5;
+    noiseGain.gain.value = 0.15;
     brownNoiseSource.connect(noiseGain);
     noiseGain.connect(audioContext.destination);
     brownNoiseSource.start();
@@ -54,12 +54,12 @@ window.addEventListener("click", (event) => {
     // Play 100 Hz tone every 18 seconds
     setInterval(() => {
         g.gain.exponentialRampToValueAtTime(
-            .95, context.currentTime + 0.5
+            .95, context.currentTime + 2.5
         )
         setTimeout(() => {
             g.gain.exponentialRampToValueAtTime(
-                0.01, context.currentTime + 2.5
+                0.05, context.currentTime + 2.5
             )
         }, 3500);
-    }, 15000);
+    }, 18000);
 });
