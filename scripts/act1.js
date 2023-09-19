@@ -63,39 +63,30 @@ let fogTexts = [
   "In summer, fog", 
   "increases the dangers", 
   "to shipping.",
-  "The fog had now",
-   "buried all heaven.",
-   " ",
-  "The fog was peopled", 
-  "with phantoms.",
-  " ",
-  "His head swam;", 
-  "the fog and smoke", 
-  "stupefied him.",
   "Mists and fogs militate", 
   "against observation", 
   "by aircraft...",
   "...especially as we",
   "were compassed round", 
   "by a very thick fog.",
-  "Come in, or the fog", 
-  "will get into the house.",
-  " "
+  "Fog dissipation by charge",
+  "and electric field has",
+  "become a research hotspot",
+  "FIDO was a technique of fog", 
+  "dissipation over runways",
+  "developed by the British",
+  "the U.S. Army conducted",
+  "a joint helicopter fog",
+  "clearing program",
+  "The fog will lead to",
+  "poor transportation and", 
+  "heavy economic losses"
 ];
 
 let fogTextsB = [
-  "Could see nothing",
-  "in the fog.",
-  " ",
   "fog gives to things",
   "exaggerated dimensions and",
   "an unnatural appearance.",
-  "Still fog, which the",
-  "sunrise cannot pierce.",
-  " ",
-  "as though fixing upon",
-  "one unshakable solidity",
-  "in a world of fog",
   "estimates frequently exceed",
   "the correct range when",
   "made during foggy weather",
@@ -104,7 +95,16 @@ let fogTextsB = [
   "discovered in time",
   "friction and the fog of",
   "war will always be the chief",
-  "characteristic of real war"
+  "characteristic of real war",
+  "Fog disrupts marine transport,",
+  "harbor activities, and causes",
+  "life threatening situations.",
+  "Fog clearing in open-pit mines",
+  "can allow the safe resumption",
+  "of mining operations.",
+  "Extended periods of fog",
+  "can have large economic",
+  "impacts."
 ]
 
 // Call init and animate functions (defined below)
@@ -197,7 +197,7 @@ function init() {
   mesh2 = new THREE.Mesh(new THREE.IcosahedronGeometry(20, 50), material);
   mesh2.position.set(0, 2, 0);
   mesh2.rotation.set(0, 0, 0);
-  mesh2.scale.set(0.45, 0.25, 0.35);
+  mesh2.scale.set(0.55, 0.25, 0.35);
   scene.add(mesh2);
 
   mesh = new THREE.Mesh(new THREE.IcosahedronGeometry(40, 80), material2);
