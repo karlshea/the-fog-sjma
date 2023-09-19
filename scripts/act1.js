@@ -16,8 +16,12 @@ let container,
   renderer,
   material,
   material2,
+  material3,
+  material4,
   mesh,
   mesh2,
+  mesh3,
+  mesh4,
   message,
   message2,
   message3,
@@ -193,6 +197,26 @@ function init() {
     side: THREE.DoubleSide,
   });
 
+  material3 = new THREE.MeshStandardMaterial({color: 0x000000, wireframe: true});
+
+  material4 = new THREE.ShaderMaterial({
+    uniforms: {
+      tExplosion: {
+        type: "t",
+        value: THREE.ImageUtils.loadTexture("../../assets/fog1.png"),
+      },
+      time: {
+        // float initialized to 0
+        type: "f",
+        value: 5.0,
+      },
+    },
+    vertexShader: document.getElementById("vertexShader").textContent,
+    fragmentShader: document.getElementById("fragmentShader").textContent,
+    side: THREE.DoubleSide,
+    wireframe: true
+  });
+
   //Objects
   mesh2 = new THREE.Mesh(new THREE.IcosahedronGeometry(20, 50), material);
   mesh2.position.set(0, 2, 0);
@@ -205,22 +229,64 @@ function init() {
   mesh.scale.set(1.25, 1.25, 1.25);
   scene.add(mesh);
 
+  mesh3 = new THREE.Mesh(new THREE.IcosahedronGeometry(41, 82), material3);
+  mesh3.position.set(0,0,0);
+  mesh3.scale.set(1.3,1.3,1.3);
+  scene.add(mesh3);
+
+  mesh4 = new THREE.Mesh(new THREE.IcosahedronGeometry(75, 150), material4);
+  mesh4.position.set(0,0,0);
+  mesh4.scale.set(2,2,2);
+  scene.add(mesh4);
+
   //graphs
   const textureI = new THREE.TextureLoader().load( '../../assets/graph_1_t.png' );
   const materialI = new THREE.MeshBasicMaterial( { map: textureI, side: THREE.DoubleSide, transparent: true } );
-  const geometryI = new THREE.PlaneGeometry( 24, 24 );
+  const geometryI = new THREE.PlaneGeometry( 48, 48 );
   const planeI = new THREE.Mesh( geometryI, materialI );
-  planeI.position.set(0 , 15 , -50);
-  //planeI.rotation.set(-1.5708,0,0);
+  planeI.position.set(0 , 0 , -50);
+  //planeI.rotation.set(0,0,-1.5708);
   scene.add( planeI );
 
-  const textureI2 = new THREE.TextureLoader().load( '../../assets/graph_4_t.png' );
+  const textureI2 = new THREE.TextureLoader().load( '../../assets/graph_2_t.png' );
   const materialI2 = new THREE.MeshBasicMaterial( { map: textureI2, side: THREE.DoubleSide, transparent: true } );
-  const geometryI2 = new THREE.PlaneGeometry( 24, 24 );
+  const geometryI2 = new THREE.PlaneGeometry( 48, 48 );
   const planeI2 = new THREE.Mesh( geometryI2, materialI2 );
-  planeI2.position.set(0 , -50 , 0);
+  planeI2.position.set(0 , -35 , 0);
   planeI2.rotation.set(-1.5708,0,0);
   scene.add( planeI2 );
+
+  const textureI3 = new THREE.TextureLoader().load( '../../assets/graph_3_t.png' );
+  const materialI3 = new THREE.MeshBasicMaterial( { map: textureI3, side: THREE.DoubleSide, transparent: true } );
+  const geometryI3 = new THREE.PlaneGeometry( 48, 48 );
+  const planeI3 = new THREE.Mesh( geometryI3, materialI3 );
+  planeI3.position.set(-50 , 0 , 0);
+  planeI3.rotation.set(0,1.5708,0);
+  scene.add( planeI3 );
+
+  const textureI4 = new THREE.TextureLoader().load( '../../assets/graph_4_t.png' );
+  const materialI4 = new THREE.MeshBasicMaterial( { map: textureI4, side: THREE.DoubleSide, transparent: true } );
+  const geometryI4 = new THREE.PlaneGeometry( 48, 48 );
+  const planeI4 = new THREE.Mesh( geometryI4, materialI4 );
+  planeI4.position.set(0 , 0 , 50);
+  planeI4.rotation.set(0,3.14159,0);
+  scene.add( planeI4 );
+
+  const textureI5 = new THREE.TextureLoader().load( '../../assets/graph_5_t.png' );
+  const materialI5 = new THREE.MeshBasicMaterial( { map: textureI5, side: THREE.DoubleSide, transparent: true } );
+  const geometryI5 = new THREE.PlaneGeometry( 48, 48 );
+  const planeI5 = new THREE.Mesh( geometryI5, materialI5 );
+  planeI5.position.set(0 , 50 , 0);
+  planeI5.rotation.set(1.5708,0,0);
+  scene.add( planeI5 );
+
+  const textureI6 = new THREE.TextureLoader().load( '../../assets/graph_6_t.png' );
+  const materialI6 = new THREE.MeshBasicMaterial( { map: textureI6, side: THREE.DoubleSide, transparent: true } );
+  const geometryI6 = new THREE.PlaneGeometry( 48, 48 );
+  const planeI6 = new THREE.Mesh( geometryI6, materialI6 );
+  planeI6.position.set(50 , 0 , 0);
+  planeI6.rotation.set(0,-1.5708,0);
+  scene.add( planeI6 );
 
   // Add Orbit Controls
   controls = new OrbitControls(camera, effect.domElement);
@@ -335,6 +401,7 @@ function animate() {
 function render() {
   material.uniforms["time"].value = 0.00025 * (Date.now() - start);
   material2.uniforms["time"].value = 0.00025 * (Date.now() - start);
+  material4.uniforms["time"].value = 0.00025 * (Date.now() - start);
   textAnimation1();
   textAnimation2();
   effect.render(scene, camera);
