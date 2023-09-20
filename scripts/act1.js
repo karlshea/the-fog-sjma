@@ -311,7 +311,7 @@ function init() {
 
   // Add Text under models
   loader3.load(
-    "../../assets/helvetiker_regular.typeface.json",
+    "../../assets/IBM_Plex_Mono_Regular.json",
     function (font) {
       // Define font color
       color = 0xdfdfdf;
