@@ -153,12 +153,16 @@ function init() {
   // Identify the html divs for the overlays
   const blocker = document.getElementById("blocker");
   const instructions = document.getElementById("instructions");
+  const button = document.getElementById("startButton");
 
   // Listen for clicks and respond by removing overlays and starting mouse look controls
-  instructions.addEventListener("click", function () {
-    instructions.style.display = "none";
-    blocker.style.display = "none";
-  });
+  button.addEventListener("click", function () {
+     instructions.style.display = "none";
+     blocker.style.display = "none";
+     audioStart();
+   });
+
+  
 
   window.addEventListener("keyup", onKeyUp);
 

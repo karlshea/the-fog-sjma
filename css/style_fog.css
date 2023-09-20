@@ -160,6 +160,28 @@ img.statement-img {
   cursor: pointer;
 }
 
+#startButton {
+  border: 1px solid white;
+  color:#FFFFFF;
+  background-color: black;
+  margin-top: 10%;
+  margin-bottom: 7.55%;;
+  padding: 2.5%;
+  font-size: 200%;
+  font-weight: 800;
+  font-family: 'Red Hat Mono', monospace;
+}
+
+#audioBox {
+  color:#FFFFFF;
+  display: block;
+  margin-bottom: 5%;
+}
+
+label {
+  color:#FFFFFF;
+}
+
 /* Act 2 */
 
 /* Act 3 */
