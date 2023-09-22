@@ -1,4 +1,4 @@
-// Fog Act 1
+// Act 1: The Fog of War
 
 // Import required source code
 // Import three.js core

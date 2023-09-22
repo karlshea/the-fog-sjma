@@ -1,22 +1,52 @@
-// Art 109 Three.js Demo Site
-// client7.js
-// A three.js scene which uses planes and texture loading to generate a scene with images which can be traversed with basic WASD and mouse controls, this scene is full screen with an overlay.
+// Act 2: The Horror of Fog
 
 // Import required source code
 // Import three.js core
 import * as THREE from "../build/three.module.js";
 // Import pointer lock controls
-import {
-  PointerLockControls
-} from "../src/PointerLockControls.js";
-
-import { AsciiEffect } from '../src/AsciiEffect.js';
+import { PointerLockControls } from "../src/PointerLockControls.js";
+import { FontLoader } from "../src/FontLoader.js";
+import { AsciiEffect } from "../src/AsciiEffect.js";
 
 // Establish variables
-let camera, scene, renderer, controls, material, effect;
+let camera,
+scene,
+renderer,
+controls,
+fogMaterial,
+fogMaterial2,
+effect,
+fogMesh,
+fogMesh2,
+message,
+shapes,
+textGeometry,
+text,
+xMid,
+matDark,
+color2;
+
+let fogTexts = [
+"The fog had now buried all heaven.",
+"The fog was peopled with phantoms.",
+"His head swam; the fog and smoke stupefied him.",
+"Come in, or the fog will get into the house.",
+"Could see nothing in the fog.",
+"Still fog, which the sunrise cannot pierce.",
+"as though fixing upon one unshakable solidity in a world of fog",
+"while from the fog others rose up, swept past and were engulfed.",
+"I must go in, the fog is rising."
+];
+
+let otherTexts = [];
+let buildingMaterial = [];
+let buildings = [];
 
 const objects = [];
 let raycaster;
+let start = Date.now();
+let textLoader = new FontLoader();
+let spoken = false;
 
 let moveForward = false;
 let moveBackward = false;
@@ -27,8 +57,6 @@ let canJump = false;
 let prevTime = performance.now();
 const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
-const vertex = new THREE.Vector3();
-const color = new THREE.Color();
 
 // Initialization and animation function calls
 init();
@@ -64,16 +92,16 @@ function init() {
 
   // Listen for clicks and respond by removing overlays and starting mouse look controls
   // Listen
-  instructions.addEventListener("click", function() {
+  instructions.addEventListener("click", function () {
     controls.lock();
   });
   // Remove overlays and begin controls on click
-  controls.addEventListener("lock", function() {
+  controls.addEventListener("lock", function () {
     instructions.style.display = "none";
     blocker.style.display = "none";
   });
   // Restore overlays and stop controls on esc
-  controls.addEventListener("unlock", function() {
+  controls.addEventListener("unlock", function () {
     blocker.style.display = "block";
     instructions.style.display = "";
   });
@@ -81,7 +109,7 @@ function init() {
   scene.add(controls.getObject());
 
   // Define key controls for WASD controls
-  const onKeyDown = function(event) {
+  const onKeyDown = function (event) {
     switch (event.code) {
       case "ArrowUp":
       case "KeyW":
@@ -110,7 +138,7 @@ function init() {
     }
   };
 
-  const onKeyUp = function(event) {
+  const onKeyUp = function (event) {
     switch (event.code) {
       case "ArrowUp":
       case "KeyW":
@@ -145,93 +173,129 @@ function init() {
     10
   );
 
-  // Generate the ground
-  let floorGeometry = new THREE.PlaneGeometry(2000, 2000, 100, 100);
-  floorGeometry.rotateX(-Math.PI / 2);
-
-  // Vertex displacement pattern for ground
-  let position = floorGeometry.attributes.position;
-
-  for (let i = 0, l = position.count; i < l; i++) {
-    vertex.fromBufferAttribute(position, i);
-
-    vertex.x += Math.random() * 20 - 10;
-    vertex.y += Math.random() * 2;
-    vertex.z += Math.random() * 20 - 10;
-
-    position.setXYZ(i, vertex.x, vertex.y, vertex.z);
-  }
-
-  floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
-
-  position = floorGeometry.attributes.position;
-  const colorsFloor = [];
-
-  for (let i = 0, l = position.count; i < l; i++) {
-    color.setHSL(Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75);
-    colorsFloor.push(color.r, color.g, color.b);
-  }
-
-  floorGeometry.setAttribute(
-    "color",
-    new THREE.Float32BufferAttribute(colorsFloor, 3)
-  );
-
-  const floorMaterial = new THREE.MeshBasicMaterial({
-    vertexColors: true
+  // Materials
+  fogMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      tExplosion: {
+        type: "t",
+        value: THREE.ImageUtils.loadTexture("../../assets/fog6.png"),
+      },
+      time: {
+        // float initialized to 0
+        type: "f",
+        value: 0.0,
+      },
+    },
+    vertexShader: document.getElementById("vertexShader").textContent,
+    fragmentShader: document.getElementById("fragmentShader").textContent,
+    side: THREE.DoubleSide,
+    fog: false,
   });
 
-  const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+  fogMaterial2 = new THREE.ShaderMaterial({
+    uniforms: {
+      tExplosion: {
+        type: "t",
+        value: THREE.ImageUtils.loadTexture("../../assets/fog6id.png"),
+      },
+      time: {
+        // float initialized to 0
+        type: "f",
+        value: 10.0,
+      },
+    },
+    vertexShader: document.getElementById("vertexShader").textContent,
+    fragmentShader: document.getElementById("fragmentShader").textContent,
+    side: THREE.DoubleSide,
+    fog: false,
+  });
 
-  // Insert completed floor into the scene
-  scene.add(floor);
+  // Building Materials
 
+  buildingMaterial[0] = new THREE.MeshBasicMaterial({color: 0x000000});
+  buildingMaterial[1] = new THREE.MeshBasicMaterial({color: 0x383838});
+  buildingMaterial[2] = new THREE.MeshBasicMaterial({color: 0x808080});
+  buildingMaterial[3] = new THREE.MeshBasicMaterial({color: 0xdedede});
 
-  // First Image (red and purple glitch map)
-  // Load image as texture
-  const texture = new THREE.TextureLoader().load( '../../assets/glitch_map.jpg' );
-  // Immediately use the texture for material creation
-  const material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
-  // Create plane geometry
-  const geometry = new THREE.PlaneGeometry( 48, 24 );
-  // Apply image texture to plane geometry
-  const plane = new THREE.Mesh( geometry, material );
-  // Position plane geometry
-  plane.position.set(0 , 15 , -15);
-  // Place plane geometry
-  scene.add( plane );
+  for (let i = 0; i < 30; i++) {
+    let ranX = Math.floor(Math.random() * (800) + +-400);
+    let ranZ = Math.floor(Math.random() * (800) + +-400);
+    let ranSpin = Math.floor(Math.random() * 3.14);
+    let ranW = Math.floor(10+(Math.random() * 300));
+    let ranH = Math.floor(10+(Math.random() * 75));
+    let ranD = Math.floor(10+(Math.random() * 75));
+    let geometry = new THREE.BoxGeometry(ranW,ranH,ranD);
+    let material = buildingMaterial[Math.floor(Math.random() * buildingMaterial.length)]
+    buildings[i] = new THREE.Mesh(geometry, material );
+    buildings[i].position.set(ranX, 0,ranZ);
+    buildings[i].rotation.set(0,ranSpin,-1.5708);
+    scene.add(buildings[i]);
+  }
 
-  // Second Image (Text with image and white background)
-  // Load image as texture
-  const texture2 = new THREE.TextureLoader().load( '../../assets/bouy.jpg' );
-  // immediately use the texture for material creation
-  const material2 = new THREE.MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide } );
-  // Create plane geometry
-  const geometry2 = new THREE.PlaneGeometry( 200, 100 );
-  // Apply image texture to plane geometry
-  const plane2 = new THREE.Mesh( geometry2, material2 );
-  // Position plane geometry
-  plane2.position.set(0 , 50 , -200);
-  // Place plane geometry
-  scene.add( plane2 );
+  // Fog floor and backdrop
+  fogMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(80, 160), fogMaterial);
+  fogMesh.position.set(0, -85, 0);
+  fogMesh.rotation.set(0, 0, 0);
+  fogMesh.scale.set(10, 1, 10);
+  scene.add(fogMesh);
+
+  fogMesh2 = new THREE.Mesh(new THREE.IcosahedronGeometry(80,160), fogMaterial2);
+  fogMesh2.position.set(0,0,0);
+  fogMesh2.scale.set(15,15,15);
+  scene.add(fogMesh2);
+
+  // Initial text
+
+  textLoader.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+    // Define font color
+    color2 = 0xdfdfdf;
+    // Define font material
+    matDark = new THREE.LineBasicMaterial({
+      color: color2,
+      side: THREE.DoubleSide,
+      fog: false,
+    });
+    // Generate side one line one
+    let randoText = Math.floor(Math.random() * (fogTexts.length));
+    message = fogTexts[randoText];
+    shapes = font.generateShapes(message, 3);
+    textGeometry = new THREE.ShapeGeometry(shapes);
+    textGeometry.computeBoundingBox();
+    text = new THREE.Mesh(textGeometry, matDark);
+    text.position.set(0, -5, 0);
+    text.rotation.set(0,0,-1.5708);
+    scene.add(text);
+
+    for (let i = 0; i < 40; i++) {
+      let ranX = Math.floor(Math.random() * (1000) + +-500);
+      let ranZ = Math.floor(Math.random() * (1000) + +-500);
+      let ranSpin = Math.floor(Math.random() * 3.14);
+      otherTexts[i] = new THREE.Mesh(textGeometry, matDark);
+      otherTexts[i].position.set(ranX,-10,ranZ);
+      otherTexts[i].rotation.set(0,ranSpin,-1.5708);
+      scene.add(otherTexts[i]);
+    }
+  });
+
+  scene.fog = new THREE.Fog( 0x121212, 10, 100 );
 
   // Define Rendered and html document placement
   renderer = new THREE.WebGLRenderer({
-    antialias: true
+    antialias: true,
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   //document.body.appendChild(renderer.domElement);
 
   //ascii effects
-  effect = new AsciiEffect(renderer, ' .,:;|-~=#', {
-    scale: .92,
+  effect = new AsciiEffect(renderer, " .,:;|-~=#", {
+    scale: 0.92,
     resolution: 0.3,
-    invert: true
+    invert: true,
   });
   effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
-  effect.domElement.style.color = 'white';
-  effect.domElement.style.backgroundColor = 'black';
+  effect.domElement.style.color = "white";
+  effect.domElement.style.backgroundColor = "black";
   effect.domElement.style.overflow = "hidden";
   document.body.appendChild(effect.domElement);
 
@@ -249,6 +313,10 @@ function onWindowResize() {
 // Animation function
 function animate() {
   requestAnimationFrame(animate);
+  textRender();
+
+  fogMaterial.uniforms["time"].value = 0.00025 * (Date.now() - start);
+  fogMaterial2.uniforms["time"].value = 0.00025 * (Date.now() - start);
 
   const time = performance.now();
 
@@ -283,6 +351,26 @@ function animate() {
     controls.moveRight(-velocity.x * delta);
     controls.moveForward(-velocity.z * delta);
 
+    // console.log("x="+controls.getObject().position.x);
+    // console.log("z="+controls.getObject().position.z);
+
+    let utterance = new SpeechSynthesisUtterance("Hello world!");
+    utterance.pitch = 0.01;
+    utterance.rate = 0.1;
+
+    if (controls.getObject().position.x > 550 ) {
+      controls.getObject().position.x = 549;
+      speechSynthesis.speak(utterance);
+    } else if (controls.getObject().position.x < -550) {
+      controls.getObject().position.x = -549;
+    }
+
+    if (controls.getObject().position.z > 550 ) {
+      controls.getObject().position.z = 549;
+    } else if (controls.getObject().position.z < -550) {
+      controls.getObject().position.z = -549;
+    }
+
     controls.getObject().position.y += velocity.y * delta; // new behavior
 
     if (controls.getObject().position.y < 10) {
@@ -296,4 +384,82 @@ function animate() {
   prevTime = time;
 
   effect.render(scene, camera);
+}
+
+function textRender() {
+  if (text.position.y < 200) {
+    text.position.y += 0.075;
+    for (let i = 0; i < 20; i++) {
+      otherTexts[i].position.y += 0.075;
+    }
+  } else if (text.position.y >=200 && text.position.y < 350) {
+    text.position.y += 0.2;
+    for (let i = 0; i < 20; i++) {
+      otherTexts[i].position.y += 0.2;
+    }
+  } else if (text.position.y >=350) {
+    text.position.y += 0.5;
+    for (let i = 0; i < 20; i++) {
+      otherTexts[i].position.y += 0.5;
+    }
+  }
+  
+  if (text.position.y > 950) {
+    text.geometry.dispose();
+    text.material.dispose();
+    scene.remove(text);
+    for (let i = 0; i < 40; i++) {
+      otherTexts[i].geometry.dispose();
+      otherTexts[i].material.dispose();
+      scene.remove(otherTexts[i]);
+    }
+    textLoader.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+      // Define font color
+      color2 = 0xdfdfdf;
+      // Define font material
+      matDark = new THREE.LineBasicMaterial({
+        color: color2,
+        side: THREE.DoubleSide,
+        fog: false,
+      });
+      // Generate side one line one
+      let randoText = Math.floor(Math.random() * (fogTexts.length));
+      message = fogTexts[randoText];
+      shapes = font.generateShapes(message, 3);
+      textGeometry = new THREE.ShapeGeometry(shapes);
+      textGeometry.computeBoundingBox();
+      text = new THREE.Mesh(textGeometry, matDark);
+      for (let i = 0; i < 40; i++) {
+        let ranX = Math.floor(Math.random() * (1000) + +-500);
+        let ranZ = Math.floor(Math.random() * (1000) + +-500);
+        otherTexts[i] = new THREE.Mesh(textGeometry, matDark);
+        otherTexts[i].position.set(ranX,-10,ranZ);
+        otherTexts[i].rotation.set(0,0,-1.5708);
+        scene.add(otherTexts[i]);
+      }
+      text.position.set(0, -10, 0);
+      text.rotation.set(0,0,-1.5708);
+      scene.add(text);
+      spoken = false;
+  
+      // let fogUtterance = new SpeechSynthesisUtterance(message);
+      // fogUtterance.pitch = 0.01;
+      // fogUtterance.rate = 0.1;
+      // speechSynthesis.speak(fogUtterance);
+    });
+  }
+
+  if (!spoken) {
+    if (text.position.y > 5) {
+      let fogUtterance = new SpeechSynthesisUtterance(message);
+      fogUtterance.pitch = 0.01;
+      fogUtterance.rate = 0.1;
+      speechSynthesis.speak(fogUtterance);
+      spoken = true;
+    }
+  }
+  console.log(text.position.y);
+
+  
+  
 }
