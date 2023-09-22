@@ -277,7 +277,7 @@ function init() {
     }
   });
 
-  scene.fog = new THREE.Fog( 0x121212, 10, 100 );
+  scene.fog = new THREE.Fog( 0x050505, 30, 100 );
 
   // Define Rendered and html document placement
   renderer = new THREE.WebGLRenderer({
