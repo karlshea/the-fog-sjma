@@ -9,6 +9,7 @@ import { OrbitControls } from "../src/OrbitControls.js";
 import { FontLoader } from "../src/FontLoader.js";
 import { AsciiEffect } from "../src/AsciiEffect.js";
 
+// Declare variables
 let container,
   scene,
   camera,
@@ -144,10 +145,6 @@ function init() {
   effect.setSize(window.innerWidth, window.innerHeight * 1.25);
   effect.domElement.style.color = "white";
   effect.domElement.style.backgroundColor = "black";
-
-  // Special case: append effect.domElement, instead of renderer.domElement.
-  // AsciiEffect creates a custom domElement (a div container) where the ASCII elements are placed.
-
   document.body.appendChild(effect.domElement);
 
   // Identify the html divs for the overlays
@@ -164,7 +161,7 @@ function init() {
 
   window.addEventListener("keyup", onKeyUp);
 
-  //Moving Materials
+  // Mesh materials
   material = new THREE.ShaderMaterial({
     uniforms: {
       tExplosion: {
@@ -222,7 +219,7 @@ function init() {
     wireframe: true,
   });
 
-  //Objects
+  // Fog and grid objects in space
   mesh2 = new THREE.Mesh(new THREE.IcosahedronGeometry(20, 50), material);
   mesh2.position.set(0, 2, 0);
   mesh2.rotation.set(0, 0, 0);
@@ -244,7 +241,7 @@ function init() {
   mesh4.scale.set(2, 2, 2);
   scene.add(mesh4);
 
-  //graphs
+  // Fog graphs
   const textureI = new THREE.TextureLoader().load("../../assets/graph_1_t.png");
   const materialI = new THREE.MeshBasicMaterial({
     map: textureI,
@@ -327,7 +324,7 @@ function init() {
   planeI6.rotation.set(0, -1.5708, 0);
   scene.add(planeI6);
 
-  // Add Orbit Controls
+  // Orbit Controls
   controls = new OrbitControls(camera, effect.domElement);
   controls.minDistance = 3;
   controls.maxDistance = 40;
@@ -344,7 +341,7 @@ function init() {
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
   scene.add(ambientLight);
 
-  // Add Text under models
+  // Texts that will move in and out of fog
   loader3.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
     // Define font color
     color = 0xdfdfdf;
@@ -445,7 +442,7 @@ function render() {
   effect.render(scene, camera);
 }
 
-//text one animation
+// Text animation side 1
 function textAnimation1() {
   if (ticker == 0) {
     if (text.position.z > 1) {
@@ -531,7 +528,7 @@ function textAnimation1() {
   }
 }
 
-//side two animation
+// Define text animation side 2
 function textAnimation2() {
   if (ticker2 == 0) {
     if (textB.position.z < 1) {
@@ -621,7 +618,7 @@ function textAnimation2() {
   }
 }
 
-// Respond to Window Resizing
+// Respond to window resizing
 window.addEventListener("resize", onWindowResize);
 
 // Window resizing function
@@ -632,6 +629,7 @@ function onWindowResize() {
   render();
 }
 
+// Respond to 'esc' key being pressed
 function onKeyUp(event) {
   if (event.keyCode === 27) {
     instructions.style.display = "";
