@@ -139,6 +139,17 @@ horror fog:
   "in a world of fog",
 
 
+"The fog had now buried all heaven.",
+"The fog was peopled with phantoms.",
+"His head swam; the fog and smoke stupefied him.",
+"Come in, or the fog will get into the house.",
+"Could see nothing in the fog.",
+"Still fog, which the sunrise cannot pierce.",
+"as though fixing upon one unshakable solidity in a world of fog",
+"while from the fog others rose up, swept past and were engulfed.",
+"I must go in, the fog is rising.",
+
+
 
 
 
