@@ -277,7 +277,7 @@ function init() {
     }
   });
 
-  scene.fog = new THREE.Fog( 0x050505, 30, 100 );
+  scene.fog = new THREE.Fog( 0x000000, 50, 120 );
 
   // Define Rendered and html document placement
   renderer = new THREE.WebGLRenderer({
@@ -393,14 +393,14 @@ function textRender() {
       otherTexts[i].position.y += 0.075;
     }
   } else if (text.position.y >=200 && text.position.y < 350) {
-    text.position.y += 0.2;
+    text.position.y += 0.3;
     for (let i = 0; i < 20; i++) {
-      otherTexts[i].position.y += 0.2;
+      otherTexts[i].position.y += 0.3;
     }
   } else if (text.position.y >=350) {
-    text.position.y += 0.5;
+    text.position.y += 0.6;
     for (let i = 0; i < 20; i++) {
-      otherTexts[i].position.y += 0.5;
+      otherTexts[i].position.y += 0.6;
     }
   }
   
