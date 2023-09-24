@@ -3,7 +3,8 @@
 // Import required source code
 // Import three.js core
 import * as THREE from "../build/three.module.js";
-// Import pointer lock controls
+
+// Import add-ons
 import { PointerLockControls } from "../src/PointerLockControls.js";
 import { FontLoader } from "../src/FontLoader.js";
 import { AsciiEffect } from "../src/AsciiEffect.js";

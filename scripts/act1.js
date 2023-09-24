@@ -4,7 +4,7 @@
 // Import three.js core
 import * as THREE from "../build/three.module.js";
 
-// Import add-ons for glTF models, orbit controls, and font loader
+// Import add-ons
 import { OrbitControls } from "../src/OrbitControls.js";
 import { FontLoader } from "../src/FontLoader.js";
 import { AsciiEffect } from "../src/AsciiEffect.js";

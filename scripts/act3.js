@@ -2,8 +2,8 @@
 
 import * as THREE from '../build/three.module.js';
 
+// Import add-ons
 import { DragControls } from '../src/DragControls.js';
-
 import { AsciiEffect } from '../src/AsciiEffect.js';
 
 let container, effect;

@@ -5,9 +5,9 @@ A digital projects commission for the [San Jose Museum of Art](https://sjmusart.
 This work is comprised of 3 "acts" exploring our relationship to fog as a society and the potential for fog to serve as a positive role model for trans embodiment. Each act is built as a procedurally generated 3D space using [three.js](https://threejs.org/). The work has been designed as an website without ads or tracking and with intentionally open source code. Sustainability and accessibility also informed the design choices for the site.
 
 ## Conceptual
-> I want to live in a world I want to live in.
+> "I want to live in a world I want to live in."
 - [Jennifer Espinoza](https://joshuajenniferespinoza.com/)
-> Like that creature, I assert my worth as a monster in spite of the conditions my monstrosity requires me to face, and redefine a life worth living.
+> "Like that creature, I assert my worth as a monster in spite of the conditions my monstrosity requires me to face, and redefine a life worth living."
 - [Susan Stryker](https://www.susanstryker.net/)
 
 This body of work centers around the politics of knowledge making, data collection, and trans visibility through an exploration of fog as a common subject/trope of horror narratives as well as metaphor used in military strategy. The questions driving this work include: 
@@ -39,10 +39,16 @@ This scene is the only one in which the viewer can actively alter the objects in
 This work is also intentionally open source and openly accessible in stark contrast to the artificial scarcity and closed nature of NFTs. While the conceptual framework of this project is not chiefly related to ecological concerns, the ecological impact of receding fog due to climate change is an under current of this work and as such, this site has been designed with sustainable web practices in mind (more on that in the technical section).
 
 ## Technical
-As mentioned above, this site...
+As mentioned above, the background effects and scenes on this site are built with [three.js](https://threejs.org/), the procedurally generated plain-text portions of the work were written in vanilla JavaScript. The movement used for the fog objects were created using 3D noise GLSL adapted from [Stefan Gustavson](https://github.com/ashima/webgl-noise). The acts themselves were written specifically for this commission and portions were built off a combination of prior examples I wrote for my classes and examples from the three.js repository.
+
+Outside of the conceptual framework for this piece, there were two other main considerations for the technical design of this piece: accessibility and sustainability. These are outlined below.
 
 ### Accessibility
+One of the things that drew me to making browser-based work in the first place was the idea that it would lower the barrier for entry to people compared to a traditional gallery installation. That being said, I also realize that websites are not inherently accessible to all people so I wanted to consider how best to make an experience like the one I created here accessible to more people. Outside of the standard considerations such as alt tags and color contrast, there where two main hurdles: the 3D scenes themselves and the extensive use of ASCII symbols to imply fog: 
 
+- For the 3D scenes. I decided to create separate descriptive text pages that are linked to each act in order to give folks unable to engage with the 3D space and/or its controls. These pages describe the aspects of the work and also link to a video walkthrough of the space. **(IN PROGRESS)**
+
+- For the symbols being used to mimic fog. I decided to use [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) and [title](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title) to generate titles for the ASCII fog text clouds that append the legible text only, allowing screen readers to see the text as the title attribute for the tag. **(IN PROGRESS)**
 
 ### Sustainability
 
