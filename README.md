@@ -7,6 +7,7 @@ This work is comprised of 3 "acts" exploring our relationship to fog as a societ
 ## Conceptual
 > "I want to live in a world I want to live in."
 - [Jennifer Espinoza](https://joshuajenniferespinoza.com/)
+
 > "Like that creature, I assert my worth as a monster in spite of the conditions my monstrosity requires me to face, and redefine a life worth living."
 - [Susan Stryker](https://www.susanstryker.net/)
 

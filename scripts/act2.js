@@ -295,8 +295,8 @@ function init() {
     invert: true,
   });
   effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
-  effect.domElement.style.color = "white";
-  effect.domElement.style.backgroundColor = "black";
+  effect.domElement.style.color = "black";
+  effect.domElement.style.backgroundColor = "white";
   effect.domElement.style.overflow = "hidden";
   document.body.appendChild(effect.domElement);
 
