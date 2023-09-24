@@ -1,32 +1,12 @@
-// Art 109 Three.js Demo Site
-// client6.js
-// A three.js scene which loads a static and animated model.
-
-// The pink model is static (contains no animation data in the file)
-// It is animated manually in Three.js
-
-// The green model is preanimated (contains animation data created in blender)
-// 3D model is from Blender default
-
-// Implements Orbit controls and font loader
+// The Fog - Background Graphics
 
 // Import required source code
 // Import three.js core
 import * as THREE from "../build/three.module.js";
 
-// Import add-ons for glTF models, orbit controls, and font loader
-import {
-  OrbitControls
-} from "../src/OrbitControls.js";
-import {
-  GLTFLoader
-} from "../src/GLTFLoader.js";
-import {
-  FontLoader
-} from "../src/FontLoader.js"
-import {
-  AsciiEffect
-} from '../src/AsciiEffect.js';
+// Import add-ons
+import { OrbitControls } from "../src/OrbitControls.js";
+import { AsciiEffect } from '../src/AsciiEffect.js';
 
 let container, scene, camera, effect, renderer, mesh, mesh2, mesh3, mixer, controls, clock;
 
