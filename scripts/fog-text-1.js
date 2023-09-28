@@ -2,6 +2,10 @@ var textBlock = "";
 var textBlockA1 = "";
 var textBlockA2 = "";
 var textBlockA3 = "";
+var ariaLabelT = "";
+var ariaLabel1 = "";
+var ariaLabel2 = "";
+var ariaLabel3 = "";
 
 //Intro Text
 
@@ -123,6 +127,8 @@ function makeTextFog() {
     fogP.appendChild(fogText);
     var currentDiv = document.getElementById("div1");
     currentDiv.style.height = "auto";
+    currentDiv.role = "img";
+    currentDiv.ariaLabel = ariaLabelT;
     var parentDiv = document.getElementById("mc");
     currentDiv.appendChild(fogP);
     console.log(textBlock);
@@ -139,6 +145,7 @@ function buildText() {
         } else {
             if ( textCounter < fogWords.length && textBlock.length > 500) {
                 textBlock = textBlock+fogWords[textCounter];
+                ariaLabelT = ariaLabelT + fogWords[textCounter];
                 textCounter++;
             }
         }
@@ -158,6 +165,8 @@ function makeTextFogA1() {
     fogPA1.appendChild(fogTextA1);
     var currentDivA1 = document.getElementById("a1-th");
     currentDivA1.style.height = "auto";
+    currentDivA1.role = "img";
+    currentDivA1.ariaLabel = ariaLabel1;
     var parentDivA1 = document.getElementById("a1-c");
     currentDivA1.appendChild(fogPA1);
     console.log(textBlockA1);
@@ -173,6 +182,7 @@ function buildTextA1() {
         } else {
             if ( textCounterA1 < fogWords2A1.length && textBlockA1.length > 100) {
                 textBlockA1 = textBlockA1+fogWords2A1[textCounterA1];
+                ariaLabel1 = ariaLabel1 + fogWords2A1[textCounterA1];
                 textCounterA1++;
             }
         }
@@ -192,6 +202,8 @@ function makeTextFogA2() {
     fogPA2.appendChild(fogTextA2);
     var currentDivA2 = document.getElementById("a2-th");
     currentDivA2.style.height = "auto";
+    currentDivA2.role = "img";
+    currentDivA2.ariaLabel = ariaLabel2;
     var parentDivA2 = document.getElementById("a2-c");
     currentDivA2.appendChild(fogPA2);
     console.log(textBlockA2);
@@ -207,6 +219,7 @@ function buildTextA2() {
         } else {
             if ( textCounterA2 < fogWords1A2.length && textBlockA2.length > 100) {
                 textBlockA2 = textBlockA2+fogWords1A2[textCounterA2];
+                ariaLabel2 = ariaLabel2 + fogWords1A2[textCounterA2];
                 textCounterA2++;
             }
         }
@@ -226,6 +239,8 @@ function makeTextFogA3() {
     fogPA3.appendChild(fogTextA3);
     var currentDivA3 = document.getElementById("a3-th");
     currentDivA3.style.height = "auto";
+    currentDivA3.role = "img";
+    currentDivA3.ariaLabel = ariaLabel3;
     var parentDivA2 = document.getElementById("a3-c");
     currentDivA3.appendChild(fogPA3);
     console.log(textBlockA3);
@@ -241,6 +256,7 @@ function buildTextA3() {
         } else {
             if ( textCounterA3 < fogWords1A3.length && textBlockA3.length > 100) {
                 textBlockA3 = textBlockA3+fogWords1A3[textCounterA3];
+                ariaLabel3 = ariaLabel3 + fogWords1A3[textCounterA3];
                 textCounterA3++;
             }
         }
