@@ -129,7 +129,7 @@ function makeTextFog() {
     currentDiv.style.height = "auto";
     currentDiv.role = "img";
     currentDiv.ariaLabel = ariaLabelT;
-    var parentDiv = document.getElementById("mc");
+    //var parentDiv = document.getElementById("mc");
     currentDiv.appendChild(fogP);
     console.log(textBlock);
     console.log("^^^ Fog Intro Text Done ^^^")
@@ -139,7 +139,7 @@ function buildText() {
     var textCounter = 0;
     while (textBlock.length <= 2500) {
         var cloudOrText = getRandomInt(20);
-        console.log(cloudOrText);
+        //console.log(cloudOrText);
         if (cloudOrText <=18) {
             textBlock = textBlock+fogFiller[getRandomInt(fogFiller.length)];
         } else {
@@ -167,7 +167,7 @@ function makeTextFogA1() {
     currentDivA1.style.height = "auto";
     currentDivA1.role = "img";
     currentDivA1.ariaLabel = ariaLabel1;
-    var parentDivA1 = document.getElementById("a1-c");
+    //var parentDivA1 = document.getElementById("a1-c");
     currentDivA1.appendChild(fogPA1);
     console.log(textBlockA1);
     console.log("^^^ Act 1 Text Done ^^^")
@@ -204,7 +204,7 @@ function makeTextFogA2() {
     currentDivA2.style.height = "auto";
     currentDivA2.role = "img";
     currentDivA2.ariaLabel = ariaLabel2;
-    var parentDivA2 = document.getElementById("a2-c");
+    //var parentDivA2 = document.getElementById("a2-c");
     currentDivA2.appendChild(fogPA2);
     console.log(textBlockA2);
     console.log("^^^ Act 2 Text Done ^^^")
@@ -241,7 +241,7 @@ function makeTextFogA3() {
     currentDivA3.style.height = "auto";
     currentDivA3.role = "img";
     currentDivA3.ariaLabel = ariaLabel3;
-    var parentDivA2 = document.getElementById("a3-c");
+    //var parentDivA2 = document.getElementById("a3-c");
     currentDivA3.appendChild(fogPA3);
     console.log(textBlockA3);
     console.log("^^^ Act 3 Text Done ^^^")

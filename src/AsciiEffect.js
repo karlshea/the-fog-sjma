@@ -30,6 +30,7 @@ class AsciiEffect {
 		domElement.style.cursor = 'default';
 
 		const oAscii = document.createElement( 'table' );
+		oAscii.ariaHidden = "true";
 		domElement.appendChild( oAscii );
 
 		let iWidth, iHeight;
