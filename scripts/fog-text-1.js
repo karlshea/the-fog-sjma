@@ -82,7 +82,7 @@ const fogWords1A1 = [
 const fogWords2A1 = [
     " From foghorns to the “fog of war” to military efforts to disperse fog, the phenomenon has long been at odds with militaristic and capitalistic ideas of progress and control. ",
     " In obscuring coasts, roads, and runways, fog denies us the situational awareness upon which so much of contemporary life is built. ",
-    " In its denial of ocular slight, fog highlights the value we place on seeing as knowing and opens up space to consider who gets to see and to what ends do they use that sight? "
+    " In its denial of ocular sight, fog highlights the value we place on seeing as knowing and opens up space to consider who gets to see and to what ends do they use that sight? "
 ];
 
 //Act 2 Text
