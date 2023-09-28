@@ -1,4 +1,5 @@
-//hi
+//Act 3: Of the Fog
+//By Chelsea Thompto
 
 import * as THREE from '../build/three.module.js';
 

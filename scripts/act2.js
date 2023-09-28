@@ -1,4 +1,5 @@
 // Act 2: The Horror of Fog
+//By Chelsea Thompto
 
 // Import required source code
 // Import three.js core

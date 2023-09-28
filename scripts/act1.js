@@ -1,4 +1,5 @@
 // Act 1: The Fog of War
+//By Chelsea Thompto
 
 // Import required source code
 // Import three.js core
