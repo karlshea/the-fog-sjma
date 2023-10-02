@@ -422,6 +422,10 @@ function init() {
     //textB3.position.rotation(3.14159,0,0);
     //scene.add(textB3);
   });
+
+  // Respond to window resizing
+window.addEventListener("resize", onWindowResize);
+
 }
 
 // Define animate loop
@@ -619,8 +623,7 @@ function textAnimation2() {
   }
 }
 
-// Respond to window resizing
-window.addEventListener("resize", onWindowResize);
+
 
 // Window resizing function
 function onWindowResize() {
