@@ -327,6 +327,8 @@ function init() {
 
   // Orbit Controls
   controls = new OrbitControls(camera, effect.domElement);
+  controls.touches.ONE = THREE.TOUCH.PAN;
+  controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
   controls.minDistance = 3;
   controls.maxDistance = 40;
   controls.target.set(0, 0, -0.2);
