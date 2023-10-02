@@ -1022,6 +1022,8 @@ var OrbitControls = function ( object, domElement ) {
 
 		event.preventDefault(); // prevent scrolling
 
+		scope.domElement.focus ? scope.domElement.focus() : window.focus();
+
 		switch ( event.touches.length ) {
 
 			case 1:
@@ -1107,6 +1109,8 @@ var OrbitControls = function ( object, domElement ) {
 		if ( scope.enabled === false ) return;
 
 		event.preventDefault(); // prevent scrolling
+
+		scope.domElement.focus ? scope.domElement.focus() : window.focus();
 
 		switch ( state ) {
 
