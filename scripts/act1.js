@@ -326,7 +326,7 @@ function init() {
   scene.add(planeI6);
 
   // Orbit Controls
-  controls = new OrbitControls(camera, document.body);
+  controls = new OrbitControls(camera, effect.domElement);
   controls.touches.ONE = THREE.TOUCH.PAN;
   controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
   controls.minDistance = 3;
