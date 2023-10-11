@@ -475,7 +475,7 @@ function textAnimation1() {
           fogTexts[newText * 3 + 2]
       );
       loader3.load(
-        "../../assets/helvetiker_regular.typeface.json",
+        "../../assets/IBM_Plex_Mono_Regular.json",
         function (font) {
           // Define font color
           //color = 0xdfdfdf;
@@ -487,7 +487,7 @@ function textAnimation1() {
           });
           //line 1
           message = fogTexts[newText * 3];
-          shapes = font.generateShapes(message, 1.25);
+          shapes = font.generateShapes(message, 1);
           geometry = new THREE.ShapeGeometry(shapes);
           geometry.computeBoundingBox();
           xMid =
@@ -499,7 +499,7 @@ function textAnimation1() {
           scene.add(text);
           //line 2
           message2 = fogTexts[newText * 3 + 1];
-          shapes2 = font.generateShapes(message2, 1.25);
+          shapes2 = font.generateShapes(message2, 1);
           geometry2 = new THREE.ShapeGeometry(shapes2);
           geometry2.computeBoundingBox();
           xMid2 =
@@ -510,7 +510,7 @@ function textAnimation1() {
           scene.add(text2);
           //line 3
           message3 = fogTexts[newText * 3 + 2];
-          shapes3 = font.generateShapes(message3, 1.25);
+          shapes3 = font.generateShapes(message3, 1);
           geometry3 = new THREE.ShapeGeometry(shapes3);
           geometry3.computeBoundingBox();
           xMid3 =
@@ -561,7 +561,7 @@ function textAnimation2() {
           fogTextsB[newTextB * 3 + 2]
       );
       loader3.load(
-        "../../assets/helvetiker_regular.typeface.json",
+        "../../assets/IBM_Plex_Mono_Regular.json",
         function (font) {
           // Define font color
           //color = 0xdfdfdf;
@@ -573,7 +573,7 @@ function textAnimation2() {
           });
           //line 1
           messageB = fogTextsB[newTextB * 3];
-          shapesB = font.generateShapes(messageB, 1.25);
+          shapesB = font.generateShapes(messageB, 1);
           geometryB = new THREE.ShapeGeometry(shapesB);
           geometryB.computeBoundingBox();
           xMidB =
@@ -585,7 +585,7 @@ function textAnimation2() {
           scene.add(textB);
           //line 2
           messageB2 = fogTextsB[newTextB * 3 + 1];
-          shapesB2 = font.generateShapes(messageB2, 1.25);
+          shapesB2 = font.generateShapes(messageB2, 1);
           geometryB2 = new THREE.ShapeGeometry(shapesB2);
           geometryB2.computeBoundingBox();
           xMidB2 =
@@ -598,7 +598,7 @@ function textAnimation2() {
           scene.add(textB2);
           //line 3
           messageB3 = fogTextsB[newTextB * 3 + 2];
-          shapesB3 = font.generateShapes(messageB3, 1.25);
+          shapesB3 = font.generateShapes(messageB3, 1);
           geometryB3 = new THREE.ShapeGeometry(shapesB3);
           geometryB3.computeBoundingBox();
           xMidB3 =

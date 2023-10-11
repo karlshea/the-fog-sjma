@@ -20,6 +20,7 @@ let plane2;
 let overlayText;
 let otOp = 1;
 let rate = 0.0005;
+let start = false;
 
 let fogTexts = [
     "Of the fog…",
@@ -148,7 +149,7 @@ function init() {
     //ascii effects
     effect = new AsciiEffect(renderer, ' .,:;|-~=#', {
         scale: .92,
-        resolution: 0.3,
+        resolution: 0.25,
         invert: false
     });
     effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
@@ -162,13 +163,22 @@ function init() {
     // Identify the html divs for the overlays
     const blocker = document.getElementById("blocker");
     const instructions = document.getElementById("instructions");
+    const button = document.getElementById("startButton");
+
+  // Listen for clicks and respond by removing overlays and starting mouse look controls
+  button.addEventListener("click", function () {
+    instructions.style.display = "none";
+    blocker.style.display = "none";
+    start = true;
+    audioStart();
+  });
 
     // Listen for clicks and respond by removing overlays and starting mouse look controls
     // Listen
-    instructions.addEventListener("click", function() {
-        instructions.style.display = "none";
-        blocker.style.display = "none";
-    });
+    // instructions.addEventListener("click", function() {
+    //     instructions.style.display = "none";
+    //     blocker.style.display = "none";
+    // });
 
     controls = new DragControls( [ ... objects ], camera, effect.domElement );
     controls.addEventListener( 'drag', render );
@@ -207,59 +217,60 @@ function onKeyUp( event ) {
     if (event.keyCode === 27 ) {
         instructions.style.display = "";
         blocker.style.display = "";
+        start = false;
     };
     //enableSelection = false;
 
 }
 
 function onClick( event ) {
+    if (start) {
+        event.preventDefault();
 
-    event.preventDefault();
+        if ( enableSelection === true ) {
 
-    if ( enableSelection === true ) {
+            const draggableObjects = controls.getObjects();
+            draggableObjects.length = 0;
 
-        const draggableObjects = controls.getObjects();
-        draggableObjects.length = 0;
+            mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+            mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
-        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+            raycaster.setFromCamera( mouse, camera );
 
-        raycaster.setFromCamera( mouse, camera );
+            const intersections = raycaster.intersectObjects( objects, true );
 
-        const intersections = raycaster.intersectObjects( objects, true );
+            if ( intersections.length > 0 ) {
 
-        if ( intersections.length > 0 ) {
+                const object = intersections[ 0 ].object;
 
-            const object = intersections[ 0 ].object;
+                if ( group.children.includes( object ) === true ) {
 
-            if ( group.children.includes( object ) === true ) {
+                    object.material.emissive.set( 0x000000 );
+                    scene.attach( object );
 
-                object.material.emissive.set( 0x000000 );
-                scene.attach( object );
+                } else {
 
-            } else {
+                    object.material.emissive.set( 0xaaaaaa );
+                    group.attach( object );
 
-                object.material.emissive.set( 0xaaaaaa );
-                group.attach( object );
+                }
+
+                controls.transformGroup = true;
+                draggableObjects.push( group );
 
             }
 
-            controls.transformGroup = true;
-            draggableObjects.push( group );
+            if ( group.children.length === 0 ) {
+
+                controls.transformGroup = false;
+                draggableObjects.push( ...objects );
+
+            }
 
         }
-
-        if ( group.children.length === 0 ) {
-
-            controls.transformGroup = false;
-            draggableObjects.push( ...objects );
-
-        }
-
-    }
 
     //render();
-
+    }
 }
 
 function textureAnimation() {

@@ -225,3 +225,20 @@ h1.act3-overlay {
   font-size: 75px;
   font-family: 'Courier New', Courier, monospace;
 }
+
+.blocker {
+  -webkit-user-drag: auto;
+  -webkit-user-select: auto; /* Safari */
+  -ms-user-select: auto; /* IE 10 and IE 11 */
+  user-select: auto; /* Standard syntax */
+  pointer-events: auto;
+  z-index: 2;
+}
+
+a.blocker {
+  -webkit-user-drag: auto;
+  -webkit-user-select: auto; /* Safari */
+  -ms-user-select: auto; /* IE 10 and IE 11 */
+  user-select: auto; /* Standard syntax */
+  pointer-events: auto;
+}
