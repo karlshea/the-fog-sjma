@@ -35,7 +35,7 @@ canvas {
 h1 {
   font-style: bold;
   color: #FFFFFF;
-  max-width: 75%;
+  /* max-width: 75%; */
   text-align: center;
   margin: auto;
   padding-bottom: 5%;
@@ -196,15 +196,23 @@ label {
 /* Act 3 */
 
 .act3-overlay {
-  position: absolute;
+  position: fixed;
   text-align: center;
   margin: auto;
-  top: 30%;
+  width: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   -webkit-user-drag: none;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
   pointer-events: none;
+  /* border: 4px solid green; */
+}
+
+h1.act3-overlay {
+  max-width: 100%;
 }
 
 #ACT3-TEXT {

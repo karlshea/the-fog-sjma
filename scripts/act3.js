@@ -11,20 +11,57 @@ let container, effect;
 let camera, scene, renderer;
 let controls, group;
 let enableSelection = false;
+let textureX;
+let textureY;
+let textureX2;
+let textureY2;
+let plane;
+let plane2;
+let overlayText;
+let otOp = 1;
+let rate = 0.0005;
+
+let fogTexts = [
+    "Of the fog…",
+    "luxuriating in obscurity",
+    "being seen but not indexed",
+    "disrupting the normal flow",
+    "being volumetrically ethereal",
+    "nurturing and shrouding",
+    "making things vanish and vanishing in turn",
+    "making the familiar unfamiliar",
+    "articulating the spaces in between",
+    "concealing and protecting",
+    "ever changing",
+    "eliciting the fear of the unknown",
+    "roiling between fixed states",
+    "occupying space and resisting visibility",
+    "shifting churning revealing concealing"
+];
 
 const objects = [];
 
 const mouse = new THREE.Vector2(), raycaster = new THREE.Raycaster();
 
 init();
+animate();
 
 function init() {
 
+    textureX = Math.random()*0.001;
+    textureY = Math.random()*0.001;
+    textureX2 = Math.random()*-0.001;
+    textureY2 = Math.random()*-0.001;
+
+    overlayText = document.getElementById("ACT3-TEXT");
+    overlayText.innerHTML = fogTexts[0];
+
     container = document.createElement( 'div' );
+    container.style.zIndex = -1;
     document.body.appendChild( container );
 
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 500 );
-    camera.position.z = 25;
+    camera.position.z = 20;
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xf0f0f0 );
@@ -46,12 +83,40 @@ function init() {
     group = new THREE.Group();
     scene.add( group );
 
+    var initPlaneX = (Math.random()-1)*4;
+    var initPlaneY = (Math.random()-1)*2;
+    var initPlaneX2 = (Math.random()-1)*3.5;
+    var initPlaneY2 = (Math.random()-1)*2;
+    console.log("init pos 1:"+initPlaneX+initPlaneY);
+    console.log("init pos 2:"+initPlaneX2+initPlaneY2);
+    
+    const texture = new THREE.TextureLoader().load( '../../assets/fog_trans_sm1_e.png' );
+    const material = new THREE.MeshBasicMaterial( { map: texture, transparent: true} );
+    const geometry2 = new THREE.PlaneGeometry( 12, 8 );
+    plane = new THREE.Mesh( geometry2, material );
+    plane.position.set(initPlaneX, initPlaneY, 18);
+    scene.add( plane );
+
+    const texture2 = new THREE.TextureLoader().load( '../../assets/fog_trans_sm1_i_ee.png' );
+    const material2 = new THREE.MeshBasicMaterial( { map: texture2, transparent: true} );
+    const geometry3 = new THREE.PlaneGeometry( 12, 8 );
+    plane2 = new THREE.Mesh( geometry3, material2 );
+    plane2.position.set(initPlaneX2, initPlaneY2, 17.9);
+    scene.add( plane2 );
+
+    //const fogMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 20), fogMaterial);
+    //fogMesh.position.set(0, 0, 0);
+    //fogMesh.rotation.set(0, 0, 0);
+    //fogMesh.scale.set(2, 1, 1);
+    //scene.add(fogMesh);
+
     const geometry = new THREE.SphereGeometry();
+    //const geometry = new THREE.IcosahedronGeometry(5, 10)
 
     for ( let i = 0; i < 200; i ++ ) {
 
         const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-
+        //const object = new THREE.Mesh( geometry, fogMaterial );
         object.position.x = Math.random() * 30 - 15;
         object.position.y = Math.random() * 15 - 7.5;
         object.position.z = Math.random() * 20 - 10;
@@ -116,7 +181,7 @@ function init() {
     window.addEventListener( 'keydown', onKeyDown );
     window.addEventListener( 'keyup', onKeyUp );
     
-    render();
+    //render();
 
 }
 
@@ -193,12 +258,78 @@ function onClick( event ) {
 
     }
 
-    render();
+    //render();
 
 }
 
-function render() {
+function textureAnimation() {
+    
+    plane.position.x += textureX;
+    plane.position.y += textureY;
+    if (plane.position.x >= 4) {
+        textureX = Math.random()*-0.001;
+        console.log("x neg");
+    } else if (plane.position.x <= -4) {
+        textureX = Math.random()*0.001;
+        console.log("x pos");
+    }
+    if (plane.position.y >= 2) {
+        textureY = Math.random()*-0.001;
+        console.log("y neg");
+    } else if (plane.position.y <= -2) {
+        textureY = Math.random()*0.001;
+        console.log("y pos");
+    }
+}
 
+function textureAnimation2() {
+    
+    plane2.position.x += textureX2;
+    plane2.position.y += textureY2;
+    if (plane2.position.x >= 3.5) {
+        textureX2 = Math.random()*-0.001;
+        console.log("x2 neg");
+    } else if (plane2.position.x <= -3.5) {
+        textureX2 = Math.random()*0.001;
+        console.log("x2 pos");
+    }
+    if (plane2.position.y >= 2) {
+        textureY2 = Math.random()*-0.001;
+        console.log("y2 neg");
+    } else if (plane2.position.y <= -2) {
+        textureY2 = Math.random()*0.001;
+        console.log("y2 pos");
+    }
+}
+
+function textAnimation() {
+    otOp -= rate;
+    overlayText.style.opacity = otOp;
+    if (otOp <= 0.01) {
+        let randoText = Math.floor(Math.random() * (fogTexts.length));
+        let spacer = Math.floor((Math.random()*40)) + 50;
+        let spacerText = spacer.toString()+"%";
+        console.log(spacerText);
+        let overlayBody = document.getElementById("a3ol");
+        overlayBody.style.width = spacerText;
+        
+        overlayText.innerHTML = fogTexts[randoText];
+        rate = rate*-1;
+    } else if ( otOp > 1) {
+        rate = rate*-1;
+    }
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    textureAnimation();
+    textureAnimation2();
+    textAnimation();
+    render();
+}
+
+function render() {
+    
     effect.render(scene, camera);
     //renderer.render( scene, camera );
 
