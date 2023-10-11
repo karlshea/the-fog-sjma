@@ -242,3 +242,37 @@ a.blocker {
   user-select: auto; /* Standard syntax */
   pointer-events: auto;
 }
+
+main.about-text {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  color: #FFFFFF;
+  max-width: 800px;
+  margin: auto;
+}
+
+div.to-about-text {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  color: #FFFFFF;
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  font-size: large;
+}
+
+h2.about-text {
+  color: #FFFFFF;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+
+a:hover.about-text {
+  color:Gainsboro;
+}
+
+a:visited.about-text {
+  color:Silver;
+}
