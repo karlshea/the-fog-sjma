@@ -1,5 +1,5 @@
 # The Fog - By [Chelsea Thompto](https://chelsea.technology/)
-A digital projects commission for the [San Jose Museum of Art](https://sjmusart.org/).
+A digital projects commission for the [San José Museum of Art](https://sjmusart.org/).
 
 ## Overview
 This work is comprised of 3 "acts" exploring our relationship to fog as a society and the potential for fog to serve as a positive role model for trans embodiment. Each act is built as a procedurally generated 3D space using [three.js](https://threejs.org/). The work has been designed as an website without ads or tracking and with intentionally open source code. Sustainability and accessibility also informed the design choices for the site.
