@@ -87,7 +87,6 @@ a {
 footer {
   text-align: right;
   font-weight: 100;
-  font-style: italic;
   font-size: small;
   position: fixed;
   width: 50%;
@@ -267,6 +266,9 @@ h2.about-text {
   color: #FFFFFF;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
+  padding-left: 0%;
+  margin-left: 0%;
+  text-align: left;
 }
 
 a:hover.about-text {
@@ -275,4 +277,21 @@ a:hover.about-text {
 
 a:visited.about-text {
   color:Silver;
+}
+
+#logo {
+  max-width: 40%;
+  vertical-align: text-top;
+  padding-bottom: 5%;
+}
+
+#about-title {
+  text-align: left;
+  font-size: 400%;
+}
+
+#author {
+  text-align: left;
+  padding-bottom: 5%;
+  margin-left: 0%;
 }
