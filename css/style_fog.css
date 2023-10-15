@@ -133,7 +133,12 @@ img.statement-img {
   flex-basis: 100%;
   flex: 1;
   align-items: center;
+  margin: auto;
   /*border: 1px solid green;*/
+}
+
+#about-foot {
+  font-size: large;
 }
 
 /* Act 1 */
@@ -242,6 +247,8 @@ a.blocker {
   pointer-events: auto;
 }
 
+/* About Page */
+
 main.about-text {
   padding-left: 20%;
   padding-right: 20%;
@@ -294,4 +301,75 @@ a:visited.about-text {
   text-align: left;
   padding-bottom: 5%;
   margin-left: 0%;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+
+  #mc {
+    max-width: 90%;
+    margin: auto;
+    padding: auto;
+  }
+
+  .mc-two-col {
+    flex-basis: 100%;
+  }
+
+  .colA {
+    flex-basis: 200%;
+  }
+
+  main.about-text {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+
+  footer {
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  #title-footer {
+    text-align: right;
+    font-weight: 100;
+    font-size: small;
+    position: fixed;
+    width: 55%;
+    left: 40%;
+    top: 93%;
+  }
+}
+
+@media (max-width: 700px) {
+  #mc {
+    max-width: 95%;
+  }
+
+  main.about-text {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+
+  #logo {
+    max-width: 50%;
+  }
+
+  footer {
+    font-size: medium;
+  }
+
+  #title-footer {
+    text-align: right;
+    font-weight: 100;
+    font-size: medium;
+    position: fixed;
+    width: 60%;
+    left: 35%;
+    top: 90%;
+  }
 }
