@@ -365,7 +365,6 @@ function animate() {
 
     if (controls.getObject().position.x > 550) {
       controls.getObject().position.x = 549;
-      speechSynthesis.speak(utterance);
     } else if (controls.getObject().position.x < -550) {
       controls.getObject().position.x = -549;
     }
