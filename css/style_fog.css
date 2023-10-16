@@ -1,8 +1,10 @@
-/* Style sheet from index.html and gtlf.html */
+/* Style sheet for The Fog - Chelsea Thompto*/
 /*
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;700&display=swap");
 */
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* General */
 
 html {
   background-color: black;
@@ -94,6 +96,27 @@ footer {
   top: 93%;
 }
 
+a.mobile-link {
+  display: none;
+}
+
+a.desktop-link {
+  display: inline;
+}
+
+p.mobile-redirect-text {
+  display: none;
+}
+
+p,a.access-footer {
+  text-align: left;
+}
+
+img.access-banner {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
 /* Intro and Statement */
 
 #bg-title-ani {
@@ -139,14 +162,6 @@ img.statement-img {
 
 #about-foot {
   font-size: large;
-}
-
-a.mobile-link {
-  display: none;
-}
-
-a.desktop-link {
-  display: inline;
 }
 
 /* Act 1 */
@@ -277,6 +292,11 @@ div.to-about-text {
   font-size: large;
 }
 
+h1.about-text {
+  text-align: left;
+  padding-bottom: 0%;
+}
+
 h2.about-text {
   color: #FFFFFF;
   padding-top: 2.5%;
@@ -321,6 +341,22 @@ a:visited.about-text {
   a.desktop-link {
     display: none;
   }
+
+  p.mobile-redirect-text {
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    padding-bottom: 5%;
+  }
+
+  p.access-footer,a.access-footer {
+    text-align: center;
+    margin: auto;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+  }
+
+
 
   #mc {
     max-width: 90%;
@@ -367,6 +403,20 @@ a:visited.about-text {
 
   a.desktop-link {
     display: none;
+  }
+
+  p.mobile-redirect-text {
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    padding-bottom: 5%;
+  }
+
+  p.access-footer,a.access-footer {
+    text-align: center;
+    margin: auto;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
   }
 
   #mc {
