@@ -141,6 +141,14 @@ img.statement-img {
   font-size: large;
 }
 
+a.mobile-link {
+  display: none;
+}
+
+a.desktop-link {
+  display: inline;
+}
+
 /* Act 1 */
 
 #blocker {
@@ -304,7 +312,15 @@ a:visited.about-text {
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
+
+  a.mobile-link {
+    display: inline;
+  }
+
+  a.desktop-link {
+    display: none;
+  }
 
   #mc {
     max-width: 90%;
@@ -344,6 +360,15 @@ a:visited.about-text {
 }
 
 @media (max-width: 700px) {
+
+  a.mobile-link {
+    display: inline;
+  }
+
+  a.desktop-link {
+    display: none;
+  }
+
   #mc {
     max-width: 95%;
   }
