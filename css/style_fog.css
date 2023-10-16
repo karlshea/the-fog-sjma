@@ -96,6 +96,16 @@ footer {
   top: 93%;
 }
 
+#title-footer {
+  text-align: right;
+  font-weight: 100;
+  font-size: small;
+  position: fixed;
+  width: 50%;
+  left: 49%;
+  top: 93%;
+}
+
 a.mobile-link {
   display: none;
 }
@@ -108,7 +118,7 @@ p.mobile-redirect-text {
   display: none;
 }
 
-p,
+p.access-footer,
 a.access-footer {
   text-align: left;
 }

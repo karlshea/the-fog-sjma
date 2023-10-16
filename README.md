@@ -47,18 +47,13 @@ Outside of the conceptual framework for this piece, there were two other main co
 ### Accessibility
 One of the things that drew me to making browser-based work in the first place was the idea that it would lower the barrier for entry to people compared to a traditional gallery installation. That being said, I also realize that websites are not inherently accessible to all people so I wanted to consider how best to make an experience like the one I created here accessible to more people. Outside of the standard considerations such as alt tags and color contrast, there where two main hurdles: the 3D scenes themselves and the extensive use of ASCII symbols to imply fog: 
 
-- For the 3D scenes. I decided to create separate descriptive text pages that are linked to each act in order to give folks unable to engage with the 3D space and/or its controls. These pages describe the aspects of the work and also link to a video walkthrough of the space. **(IN PROGRESS)**
+- For the 3D scenes. I decided to create separate descriptive text pages that are linked to each act in order to give folks unable to engage with the 3D space and/or its controls. These pages describe the aspects of the work and also link to a video walkthrough of the space.
 
 - For the symbols being used to mimic fog with readable text interspersed, I decided to use [aria roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) and [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to generate screen reader labels for the ASCII fog text clouds that append the legible text only, allowing screen readers to access the legible the text.
 
 ### Sustainability
-In 2021, I started a redesign of my portfolio website using more sustainable design practices and then [wrote about why I thought it was important](https://chelsea.technology/writing/blog/posts/8_26_22.html). Since then, I have continued to try and consider sustainability throughout my practice. One of the most direct ways I have found to do that within the context of the web is to reduce the amount of bandwidth a site takes up. To that end, in this project I have landed on the goal of keeping the entirety of this project under 5MB in size. This includes fonts, media assets, and all JS dependencies. **(IN PROGRESS PROJECT IS CURRENTLY ~2.5MB)**
+In 2021, I started a redesign of my portfolio website using more sustainable design practices and then [wrote about why I thought it was important](https://chelsea.technology/writing/blog/posts/8_26_22.html). Since then, I have continued to try and consider sustainability throughout my practice. One of the most direct ways I have found to do that within the context of the web is to reduce the amount of bandwidth a site takes up. To that end, in this project I have landed on the goal of keeping the entirety of this project under 5MB in size. This includes fonts, media assets, and all JS dependencies. **(PROJECT IS CURRENTLY ~2.5MB)**
 
 In addition to this, I have also been deliberate in making sure that all dependencies and assets for the project are present within the repository, meaning that the piece could also be downloaded and run locally on an individual machine or other non-internet network contexts.
 
 These steps by no means "solve" the issue but I think they are important steps in considering how to work elegantly within limits instead of chasing the highest fidelity/resolution/tech possible. I think more artists need to adopt different approaches to their relationship with technology, like those found in the [Damaged Earth Catalog](https://damaged.bleu255.com/).
-
-
-
-## Endnotes
-This work is still in progress, I will add more notes and revise as the project moves forward. 
