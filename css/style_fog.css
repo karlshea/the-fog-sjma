@@ -2,7 +2,7 @@
 /*
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;700&display=swap");
 */
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 /* General */
 
@@ -15,7 +15,7 @@ body {
   /*
   font-family: "Source Code Pro", monospace;
   */
-  font-family: 'Red Hat Mono', monospace;
+  font-family: "Red Hat Mono", monospace;
   margin: auto;
   display: block;
   padding: 0px;
@@ -36,7 +36,7 @@ canvas {
 
 h1 {
   font-style: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   /* max-width: 75%; */
   text-align: center;
   margin: auto;
@@ -46,11 +46,11 @@ h1 {
 h1.title-main {
   padding-top: 12.5%;
   font-size: 750%;
-  letter-spacing: .25em;
+  letter-spacing: 0.25em;
 }
 
 h2 {
-  color: #FFFFFF;
+  color: #ffffff;
   max-width: 75%;
   text-align: center;
   margin: auto;
@@ -65,7 +65,7 @@ h2.title-second {
 }
 
 p {
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 150%;
 }
 
@@ -83,7 +83,7 @@ p.mid {
 }
 
 a {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 footer {
@@ -108,7 +108,8 @@ p.mobile-redirect-text {
   display: none;
 }
 
-p,a.access-footer {
+p,
+a.access-footer {
   text-align: left;
 }
 
@@ -189,24 +190,26 @@ img.statement-img {
 
 #startButton {
   border: 1px solid white;
-  color:#FFFFFF;
+  color: #ffffff;
   background-color: black;
   margin-top: 5%;
-  margin-bottom: 5%;;
+  margin-bottom: 5%;
   padding: 2.5%;
-  font-size: 200%;
+  font-size: 150%;
   font-weight: 800;
-  font-family: 'Red Hat Mono', monospace;
+  font-family: "Red Hat Mono", monospace;
+  border-radius: 2%;
+  opacity: 0.9;
 }
 
 #audioBox {
-  color:#FFFFFF;
+  color: #ffffff;
   display: block;
   margin-bottom: 5%;
 }
 
 label {
-  color:#FFFFFF;
+  color: #ffffff;
   margin-top: 2%;
   margin-bottom: 2%;
   padding: 1%;
@@ -250,7 +253,7 @@ h1.act3-overlay {
   pointer-events: none;
   color: black;
   font-size: 75px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .blocker {
@@ -277,7 +280,7 @@ main.about-text {
   padding-right: 20%;
   padding-top: 5%;
   padding-bottom: 5%;
-  color: #FFFFFF;
+  color: #ffffff;
   max-width: 800px;
   margin: auto;
 }
@@ -285,7 +288,7 @@ main.about-text {
 div.to-about-text {
   padding-top: 5%;
   padding-bottom: 5%;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   max-width: 800px;
   margin: auto;
@@ -298,7 +301,7 @@ h1.about-text {
 }
 
 h2.about-text {
-  color: #FFFFFF;
+  color: #ffffff;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   padding-left: 0%;
@@ -307,11 +310,11 @@ h2.about-text {
 }
 
 a:hover.about-text {
-  color:Gainsboro;
+  color: Gainsboro;
 }
 
 a:visited.about-text {
-  color:Silver;
+  color: Silver;
 }
 
 #logo {
@@ -333,7 +336,6 @@ a:visited.about-text {
 
 /* Responsive */
 @media (max-width: 1024px) {
-
   a.mobile-link {
     display: inline;
   }
@@ -349,14 +351,13 @@ a:visited.about-text {
     padding-bottom: 5%;
   }
 
-  p.access-footer,a.access-footer {
+  p.access-footer,
+  a.access-footer {
     text-align: center;
     margin: auto;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
   }
-
-
 
   #mc {
     max-width: 90%;
@@ -396,7 +397,6 @@ a:visited.about-text {
 }
 
 @media (max-width: 700px) {
-
   a.mobile-link {
     display: inline;
   }
@@ -412,7 +412,8 @@ a:visited.about-text {
     padding-bottom: 5%;
   }
 
-  p.access-footer,a.access-footer {
+  p.access-footer,
+  a.access-footer {
     text-align: center;
     margin: auto;
     padding-top: 2.5%;

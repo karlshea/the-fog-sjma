@@ -59,6 +59,9 @@ let prevTime = performance.now();
 const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
 
+let cb = document.querySelector("#audioCheck");
+let chosen = false;
+
 // Initialization and animation function calls
 init();
 animate();
@@ -90,17 +93,17 @@ function init() {
   // Identify the html divs for the overlays
   const blocker = document.getElementById("blocker");
   const instructions = document.getElementById("instructions");
+  const button = document.getElementById("startButton");
 
   // Listen for clicks and respond by removing overlays and starting mouse look controls
-  // Listen
-  instructions.addEventListener("click", function () {
-    controls.lock();
-  });
-  // Remove overlays and begin controls on click
-  controls.addEventListener("lock", function () {
+  button.addEventListener("click", function () {
     instructions.style.display = "none";
     blocker.style.display = "none";
+    chosen = true;
+    controls.lock();
   });
+
+  // Listen for clicks and respond by removing overlays and starting mouse look controls
   // Restore overlays and stop controls on esc
   controls.addEventListener("unlock", function () {
     blocker.style.display = "block";
@@ -451,8 +454,10 @@ function textRender() {
       let fogUtterance = new SpeechSynthesisUtterance(message);
       fogUtterance.pitch = 0.01;
       fogUtterance.rate = 0.1;
-      speechSynthesis.speak(fogUtterance);
-      spoken = true;
+      if (cb.checked && chosen) {
+        speechSynthesis.speak(fogUtterance);
+        spoken = true;
+      }
     }
   }
 }
