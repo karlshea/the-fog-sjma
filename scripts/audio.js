@@ -30,12 +30,12 @@ function audioStart() {
 
       var context = new AudioContext();
       var o = context.createOscillator();
-      var frequency = 100.0;
+      var frequency = 125.0;
       var g = context.createGain();
 
       o.type = "sine";
       o.frequency.value = frequency;
-      g.gain.value = 0.01;
+      g.gain.value = 0.1;
       o.connect(g);
       g.connect(context.destination);
 
@@ -57,7 +57,7 @@ function audioStart() {
       brownNoiseSource.buffer = brownNoiseBuffer;
       brownNoiseSource.loop = true;
       const noiseGain = audioContext.createGain();
-      noiseGain.gain.value = 0.15;
+      noiseGain.gain.value = 0.1;
       brownNoiseSource.connect(noiseGain);
       noiseGain.connect(audioContext.destination);
       brownNoiseSource.start();
@@ -66,9 +66,9 @@ function audioStart() {
 
     // Play 100 Hz tone every 18 seconds
     setInterval(() => {
-      g.gain.exponentialRampToValueAtTime(0.95, context.currentTime + 2.5);
+      g.gain.exponentialRampToValueAtTime(0.9, context.currentTime + 2.5);
       setTimeout(() => {
-        g.gain.exponentialRampToValueAtTime(0.05, context.currentTime + 2.5);
+        g.gain.exponentialRampToValueAtTime(0.1, context.currentTime + 2.5);
       }, 3500);
     }, 18000);
   } else {
