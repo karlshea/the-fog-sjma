@@ -12,32 +12,31 @@ import { AsciiEffect } from "../src/AsciiEffect.js";
 
 // Establish variables
 let camera,
-scene,
-renderer,
-controls,
-fogMaterial,
-fogMaterial2,
-effect,
-fogMesh,
-fogMesh2,
-message,
-shapes,
-textGeometry,
-text,
-xMid,
-matDark,
-color2;
+  scene,
+  renderer,
+  controls,
+  fogMaterial,
+  fogMaterial2,
+  effect,
+  fogMesh,
+  fogMesh2,
+  message,
+  shapes,
+  textGeometry,
+  text,
+  matDark,
+  color2;
 
 let fogTexts = [
-"The fog had now buried all heaven.",
-"The fog was peopled with phantoms.",
-"His head swam; the fog and smoke stupefied him.",
-"Come in, or the fog will get into the house.",
-"Could see nothing in the fog.",
-"Still fog, which the sunrise cannot pierce.",
-"as though fixing upon one unshakable solidity in a world of fog",
-"while from the fog others rose up, swept past and were engulfed.",
-"I must go in, the fog is rising."
+  "The fog had now buried all heaven.",
+  "The fog was peopled with phantoms.",
+  "His head swam; the fog and smoke stupefied him.",
+  "Come in, or the fog will get into the house.",
+  "Could see nothing in the fog.",
+  "Still fog, which the sunrise cannot pierce.",
+  "as though fixing upon one unshakable solidity in a world of fog",
+  "while from the fog others rose up, swept past and were engulfed.",
+  "I must go in, the fog is rising.",
 ];
 
 let otherTexts = [];
@@ -214,23 +213,24 @@ function init() {
 
   // Building Materials
 
-  buildingMaterial[0] = new THREE.MeshBasicMaterial({color: 0x000000});
-  buildingMaterial[1] = new THREE.MeshBasicMaterial({color: 0x383838});
-  buildingMaterial[2] = new THREE.MeshBasicMaterial({color: 0x808080});
-  buildingMaterial[3] = new THREE.MeshBasicMaterial({color: 0xdedede});
+  buildingMaterial[0] = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  buildingMaterial[1] = new THREE.MeshBasicMaterial({ color: 0x383838 });
+  buildingMaterial[2] = new THREE.MeshBasicMaterial({ color: 0x808080 });
+  buildingMaterial[3] = new THREE.MeshBasicMaterial({ color: 0xdedede });
 
   for (let i = 0; i < 30; i++) {
-    let ranX = Math.floor(Math.random() * (800) + +-400);
-    let ranZ = Math.floor(Math.random() * (800) + +-400);
+    let ranX = Math.floor(Math.random() * 800 + +-400);
+    let ranZ = Math.floor(Math.random() * 800 + +-400);
     let ranSpin = Math.floor(Math.random() * 3.14);
-    let ranW = Math.floor(10+(Math.random() * 300));
-    let ranH = Math.floor(10+(Math.random() * 75));
-    let ranD = Math.floor(10+(Math.random() * 75));
-    let geometry = new THREE.BoxGeometry(ranW,ranH,ranD);
-    let material = buildingMaterial[Math.floor(Math.random() * buildingMaterial.length)]
-    buildings[i] = new THREE.Mesh(geometry, material );
-    buildings[i].position.set(ranX, 0,ranZ);
-    buildings[i].rotation.set(0,ranSpin,-1.5708);
+    let ranW = Math.floor(10 + Math.random() * 300);
+    let ranH = Math.floor(10 + Math.random() * 75);
+    let ranD = Math.floor(10 + Math.random() * 75);
+    let geometry = new THREE.BoxGeometry(ranW, ranH, ranD);
+    let material =
+      buildingMaterial[Math.floor(Math.random() * buildingMaterial.length)];
+    buildings[i] = new THREE.Mesh(geometry, material);
+    buildings[i].position.set(ranX, 0, ranZ);
+    buildings[i].rotation.set(0, ranSpin, -1.5708);
     scene.add(buildings[i]);
   }
 
@@ -241,9 +241,12 @@ function init() {
   fogMesh.scale.set(10, 1, 10);
   scene.add(fogMesh);
 
-  fogMesh2 = new THREE.Mesh(new THREE.IcosahedronGeometry(80,160), fogMaterial2);
-  fogMesh2.position.set(0,0,0);
-  fogMesh2.scale.set(15,15,15);
+  fogMesh2 = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(80, 160),
+    fogMaterial2
+  );
+  fogMesh2.position.set(0, 0, 0);
+  fogMesh2.scale.set(15, 15, 15);
   scene.add(fogMesh2);
 
   // Initial text
@@ -258,28 +261,28 @@ function init() {
       fog: false,
     });
     // Generate side one line one
-    let randoText = Math.floor(Math.random() * (fogTexts.length));
+    let randoText = Math.floor(Math.random() * fogTexts.length);
     message = fogTexts[randoText];
     shapes = font.generateShapes(message, 3);
     textGeometry = new THREE.ShapeGeometry(shapes);
     textGeometry.computeBoundingBox();
     text = new THREE.Mesh(textGeometry, matDark);
     text.position.set(0, -5, 0);
-    text.rotation.set(0,0,-1.5708);
+    text.rotation.set(0, 0, -1.5708);
     scene.add(text);
 
     for (let i = 0; i < 40; i++) {
-      let ranX = Math.floor(Math.random() * (1000) + +-500);
-      let ranZ = Math.floor(Math.random() * (1000) + +-500);
+      let ranX = Math.floor(Math.random() * 1000 + +-500);
+      let ranZ = Math.floor(Math.random() * 1000 + +-500);
       let ranSpin = Math.floor(Math.random() * 3.14);
       otherTexts[i] = new THREE.Mesh(textGeometry, matDark);
-      otherTexts[i].position.set(ranX,-10,ranZ);
-      otherTexts[i].rotation.set(0,ranSpin,-1.5708);
+      otherTexts[i].position.set(ranX, -10, ranZ);
+      otherTexts[i].rotation.set(0, ranSpin, -1.5708);
       scene.add(otherTexts[i]);
     }
   });
 
-  scene.fog = new THREE.Fog( 0x000000, 50, 120 );
+  scene.fog = new THREE.Fog(0x000000, 50, 120);
 
   // Define Rendered and html document placement
   renderer = new THREE.WebGLRenderer({
@@ -353,21 +356,18 @@ function animate() {
     controls.moveRight(-velocity.x * delta);
     controls.moveForward(-velocity.z * delta);
 
-    // console.log("x="+controls.getObject().position.x);
-    // console.log("z="+controls.getObject().position.z);
-
     let utterance = new SpeechSynthesisUtterance("Hello world!");
     utterance.pitch = 0.01;
     utterance.rate = 0.1;
 
-    if (controls.getObject().position.x > 550 ) {
+    if (controls.getObject().position.x > 550) {
       controls.getObject().position.x = 549;
       speechSynthesis.speak(utterance);
     } else if (controls.getObject().position.x < -550) {
       controls.getObject().position.x = -549;
     }
 
-    if (controls.getObject().position.z > 550 ) {
+    if (controls.getObject().position.z > 550) {
       controls.getObject().position.z = 549;
     } else if (controls.getObject().position.z < -550) {
       controls.getObject().position.z = -549;
@@ -394,18 +394,18 @@ function textRender() {
     for (let i = 0; i < 20; i++) {
       otherTexts[i].position.y += 0.075;
     }
-  } else if (text.position.y >=200 && text.position.y < 350) {
+  } else if (text.position.y >= 200 && text.position.y < 350) {
     text.position.y += 0.3;
     for (let i = 0; i < 20; i++) {
       otherTexts[i].position.y += 0.3;
     }
-  } else if (text.position.y >=350) {
+  } else if (text.position.y >= 350) {
     text.position.y += 0.6;
     for (let i = 0; i < 20; i++) {
       otherTexts[i].position.y += 0.6;
     }
   }
-  
+
   if (text.position.y > 950) {
     text.geometry.dispose();
     text.material.dispose();
@@ -425,29 +425,24 @@ function textRender() {
         fog: false,
       });
       // Generate side one line one
-      let randoText = Math.floor(Math.random() * (fogTexts.length));
+      let randoText = Math.floor(Math.random() * fogTexts.length);
       message = fogTexts[randoText];
       shapes = font.generateShapes(message, 3);
       textGeometry = new THREE.ShapeGeometry(shapes);
       textGeometry.computeBoundingBox();
       text = new THREE.Mesh(textGeometry, matDark);
       for (let i = 0; i < 40; i++) {
-        let ranX = Math.floor(Math.random() * (1000) + +-500);
-        let ranZ = Math.floor(Math.random() * (1000) + +-500);
+        let ranX = Math.floor(Math.random() * 1000 + +-500);
+        let ranZ = Math.floor(Math.random() * 1000 + +-500);
         otherTexts[i] = new THREE.Mesh(textGeometry, matDark);
-        otherTexts[i].position.set(ranX,-10,ranZ);
-        otherTexts[i].rotation.set(0,0,-1.5708);
+        otherTexts[i].position.set(ranX, -10, ranZ);
+        otherTexts[i].rotation.set(0, 0, -1.5708);
         scene.add(otherTexts[i]);
       }
       text.position.set(0, -10, 0);
-      text.rotation.set(0,0,-1.5708);
+      text.rotation.set(0, 0, -1.5708);
       scene.add(text);
       spoken = false;
-  
-      // let fogUtterance = new SpeechSynthesisUtterance(message);
-      // fogUtterance.pitch = 0.01;
-      // fogUtterance.rate = 0.1;
-      // speechSynthesis.speak(fogUtterance);
     });
   }
 
@@ -460,8 +455,4 @@ function textRender() {
       spoken = true;
     }
   }
-  console.log(text.position.y);
-
-  
-  
 }

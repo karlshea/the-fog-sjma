@@ -1,7 +1,6 @@
 // Act 1: The Fog of War
 //By Chelsea Thompto
 
-// Import required source code
 // Import three.js core
 import * as THREE from "../build/three.module.js";
 
@@ -426,8 +425,7 @@ function init() {
   });
 
   // Respond to window resizing
-window.addEventListener("resize", onWindowResize);
-
+  window.addEventListener("resize", onWindowResize);
 }
 
 // Define animate loop
@@ -474,53 +472,48 @@ function textAnimation1() {
           "\n" +
           fogTexts[newText * 3 + 2]
       );
-      loader3.load(
-        "../../assets/IBM_Plex_Mono_Regular.json",
-        function (font) {
-          // Define font color
-          //color = 0xdfdfdf;
-          color = 0x757575;
-          // Define font material
-          matDark = new THREE.LineBasicMaterial({
-            color: color,
-            side: THREE.DoubleSide,
-          });
-          //line 1
-          message = fogTexts[newText * 3];
-          shapes = font.generateShapes(message, 1);
-          geometry = new THREE.ShapeGeometry(shapes);
-          geometry.computeBoundingBox();
-          xMid =
-            -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
-          geometry.translate(xMid, 0, 0);
-          text = new THREE.Mesh(geometry, matDark);
-          text.position.set(0, 1.75, 1);
-          //text.rotation.set(-1.5708, 0 , 0);
-          scene.add(text);
-          //line 2
-          message2 = fogTexts[newText * 3 + 1];
-          shapes2 = font.generateShapes(message2, 1);
-          geometry2 = new THREE.ShapeGeometry(shapes2);
-          geometry2.computeBoundingBox();
-          xMid2 =
-            -0.5 * (geometry2.boundingBox.max.x - geometry2.boundingBox.min.x);
-          geometry2.translate(xMid2, 0, 0);
-          text2 = new THREE.Mesh(geometry2, matDark);
-          text2.position.set(0, 0, 1);
-          scene.add(text2);
-          //line 3
-          message3 = fogTexts[newText * 3 + 2];
-          shapes3 = font.generateShapes(message3, 1);
-          geometry3 = new THREE.ShapeGeometry(shapes3);
-          geometry3.computeBoundingBox();
-          xMid3 =
-            -0.5 * (geometry3.boundingBox.max.x - geometry3.boundingBox.min.x);
-          geometry3.translate(xMid3, 0, 0);
-          text3 = new THREE.Mesh(geometry3, matDark);
-          text3.position.set(0, -1.75, 1);
-          scene.add(text3);
-        }
-      );
+      loader3.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+        // Define font color
+        color = 0x757575;
+        // Define font material
+        matDark = new THREE.LineBasicMaterial({
+          color: color,
+          side: THREE.DoubleSide,
+        });
+        //line 1
+        message = fogTexts[newText * 3];
+        shapes = font.generateShapes(message, 1);
+        geometry = new THREE.ShapeGeometry(shapes);
+        geometry.computeBoundingBox();
+        xMid = -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+        geometry.translate(xMid, 0, 0);
+        text = new THREE.Mesh(geometry, matDark);
+        text.position.set(0, 1.75, 1);
+        //text.rotation.set(-1.5708, 0 , 0);
+        scene.add(text);
+        //line 2
+        message2 = fogTexts[newText * 3 + 1];
+        shapes2 = font.generateShapes(message2, 1);
+        geometry2 = new THREE.ShapeGeometry(shapes2);
+        geometry2.computeBoundingBox();
+        xMid2 =
+          -0.5 * (geometry2.boundingBox.max.x - geometry2.boundingBox.min.x);
+        geometry2.translate(xMid2, 0, 0);
+        text2 = new THREE.Mesh(geometry2, matDark);
+        text2.position.set(0, 0, 1);
+        scene.add(text2);
+        //line 3
+        message3 = fogTexts[newText * 3 + 2];
+        shapes3 = font.generateShapes(message3, 1);
+        geometry3 = new THREE.ShapeGeometry(shapes3);
+        geometry3.computeBoundingBox();
+        xMid3 =
+          -0.5 * (geometry3.boundingBox.max.x - geometry3.boundingBox.min.x);
+        geometry3.translate(xMid3, 0, 0);
+        text3 = new THREE.Mesh(geometry3, matDark);
+        text3.position.set(0, -1.75, 1);
+        scene.add(text3);
+      });
       ticker = 1;
     }
   }
@@ -560,57 +553,52 @@ function textAnimation2() {
           "\n" +
           fogTextsB[newTextB * 3 + 2]
       );
-      loader3.load(
-        "../../assets/IBM_Plex_Mono_Regular.json",
-        function (font) {
-          // Define font color
-          //color = 0xdfdfdf;
-          color = 0x757575;
-          // Define font material
-          matDark = new THREE.LineBasicMaterial({
-            color: color,
-            side: THREE.DoubleSide,
-          });
-          //line 1
-          messageB = fogTextsB[newTextB * 3];
-          shapesB = font.generateShapes(messageB, 1);
-          geometryB = new THREE.ShapeGeometry(shapesB);
-          geometryB.computeBoundingBox();
-          xMidB =
-            -0.5 * (geometryB.boundingBox.max.x - geometryB.boundingBox.min.x);
-          geometryB.translate(xMidB, 0, 0);
-          textB = new THREE.Mesh(geometryB, matDark);
-          textB.position.set(0, 1.75, 1);
-          textB.rotation.set(0, 3.14159, 0);
-          scene.add(textB);
-          //line 2
-          messageB2 = fogTextsB[newTextB * 3 + 1];
-          shapesB2 = font.generateShapes(messageB2, 1);
-          geometryB2 = new THREE.ShapeGeometry(shapesB2);
-          geometryB2.computeBoundingBox();
-          xMidB2 =
-            -0.5 *
-            (geometryB2.boundingBox.max.x - geometryB2.boundingBox.min.x);
-          geometryB2.translate(xMidB2, 0, 0);
-          textB2 = new THREE.Mesh(geometryB2, matDark);
-          textB2.position.set(0, 0, 1);
-          textB2.rotation.set(0, 3.14159, 0);
-          scene.add(textB2);
-          //line 3
-          messageB3 = fogTextsB[newTextB * 3 + 2];
-          shapesB3 = font.generateShapes(messageB3, 1);
-          geometryB3 = new THREE.ShapeGeometry(shapesB3);
-          geometryB3.computeBoundingBox();
-          xMidB3 =
-            -0.5 *
-            (geometryB3.boundingBox.max.x - geometryB3.boundingBox.min.x);
-          geometryB3.translate(xMidB3, 0, 0);
-          textB3 = new THREE.Mesh(geometryB3, matDark);
-          textB3.position.set(0, -1.75, 1);
-          textB3.rotation.set(0, 3.14159, 0);
-          scene.add(textB3);
-        }
-      );
+      loader3.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+        // Define font color
+        //color = 0xdfdfdf;
+        color = 0x757575;
+        // Define font material
+        matDark = new THREE.LineBasicMaterial({
+          color: color,
+          side: THREE.DoubleSide,
+        });
+        //line 1
+        messageB = fogTextsB[newTextB * 3];
+        shapesB = font.generateShapes(messageB, 1);
+        geometryB = new THREE.ShapeGeometry(shapesB);
+        geometryB.computeBoundingBox();
+        xMidB =
+          -0.5 * (geometryB.boundingBox.max.x - geometryB.boundingBox.min.x);
+        geometryB.translate(xMidB, 0, 0);
+        textB = new THREE.Mesh(geometryB, matDark);
+        textB.position.set(0, 1.75, 1);
+        textB.rotation.set(0, 3.14159, 0);
+        scene.add(textB);
+        //line 2
+        messageB2 = fogTextsB[newTextB * 3 + 1];
+        shapesB2 = font.generateShapes(messageB2, 1);
+        geometryB2 = new THREE.ShapeGeometry(shapesB2);
+        geometryB2.computeBoundingBox();
+        xMidB2 =
+          -0.5 * (geometryB2.boundingBox.max.x - geometryB2.boundingBox.min.x);
+        geometryB2.translate(xMidB2, 0, 0);
+        textB2 = new THREE.Mesh(geometryB2, matDark);
+        textB2.position.set(0, 0, 1);
+        textB2.rotation.set(0, 3.14159, 0);
+        scene.add(textB2);
+        //line 3
+        messageB3 = fogTextsB[newTextB * 3 + 2];
+        shapesB3 = font.generateShapes(messageB3, 1);
+        geometryB3 = new THREE.ShapeGeometry(shapesB3);
+        geometryB3.computeBoundingBox();
+        xMidB3 =
+          -0.5 * (geometryB3.boundingBox.max.x - geometryB3.boundingBox.min.x);
+        geometryB3.translate(xMidB3, 0, 0);
+        textB3 = new THREE.Mesh(geometryB3, matDark);
+        textB3.position.set(0, -1.75, 1);
+        textB3.rotation.set(0, 3.14159, 0);
+        scene.add(textB3);
+      });
       ticker2 = 1;
     }
   }
@@ -624,8 +612,6 @@ function textAnimation2() {
     }
   }
 }
-
-
 
 // Window resizing function
 function onWindowResize() {

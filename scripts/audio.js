@@ -1,6 +1,5 @@
 var audioOn = false;
 
-//window.addEventListener("click", (event) => {
 function audioStart() {
   // Initialize AudioContext
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -38,18 +37,6 @@ function audioStart() {
       g.gain.value = 0.1;
       o.connect(g);
       g.connect(context.destination);
-
-      // Create an oscillator for the 100 Hz tone
-      // const oscillator = audioContext.createOscillator();
-      // oscillator.type = 'sine';
-      // oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
-      // var gain = oscillator.createGain();
-
-      // Connect the oscillator to the destination (speakers)
-      // oscillator.connect(gain);
-      // gain.connect(audioContext.destination);
-      //oscillator.connect(audioContext.destination);
-
       o.start();
 
       // Play brown noise
@@ -75,6 +62,4 @@ function audioStart() {
     g.gain.value = 0;
     noiseGain.gain.value = 0;
   }
-
-  //});
 }
