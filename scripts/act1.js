@@ -60,6 +60,7 @@ let container,
   matDark;
 
 let start = Date.now();
+let chosen = false;
 let ticker = 0;
 let ticker2 = 0;
 let loader3 = new FontLoader();
@@ -156,7 +157,11 @@ function init() {
   button.addEventListener("click", function () {
     instructions.style.display = "none";
     blocker.style.display = "none";
+    chosen = true;
     audioStart();
+    if (audioOn) {
+      audioToggle();
+    }
   });
 
   window.addEventListener("keyup", onKeyUp);
@@ -626,5 +631,101 @@ function onKeyUp(event) {
   if (event.keyCode === 27) {
     instructions.style.display = "";
     blocker.style.display = "";
+    chosen = false;
+    audioToggle();
+  }
+}
+
+// Audio Stuff
+
+var audioOn = false;
+var audioContext;
+var bufferSize;
+var brownNoiseBuffer;
+var data;
+var cb;
+var noiseGain;
+var lastOut = 0;
+var brownNoiseSource;
+var context;
+var o;
+var frequency;
+var g;
+
+function audioStart() {
+  // Initialize AudioContext
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Create a Brown noise buffer
+  bufferSize = 2 * audioContext.sampleRate;
+  brownNoiseBuffer = audioContext.createBuffer(
+    1,
+    bufferSize,
+    audioContext.sampleRate
+  );
+  data = brownNoiseBuffer.getChannelData(0);
+
+  cb = document.querySelector("#audioCheck");
+
+  lastOut = 0;
+
+  if (cb.checked) {
+    if (!audioOn) {
+      for (let i = 0; i < bufferSize; i++) {
+        const whiteNoise = Math.random() * 2 - 1;
+        data[i] = (lastOut + 0.02 * whiteNoise) / 1.02;
+        lastOut = data[i];
+        data[i] *= 3.5;
+      }
+
+      context = new AudioContext();
+      o = context.createOscillator();
+      frequency = 125.0;
+      g = context.createGain();
+
+      o.type = "sine";
+      o.frequency.value = frequency;
+      g.gain.value = 0.1;
+      o.connect(g);
+      g.connect(context.destination);
+      o.start();
+
+      // Play brown noise
+      brownNoiseSource = audioContext.createBufferSource();
+      brownNoiseSource.buffer = brownNoiseBuffer;
+      brownNoiseSource.loop = true;
+      noiseGain = audioContext.createGain();
+      noiseGain.gain.value = 0.15;
+      brownNoiseSource.connect(noiseGain);
+      noiseGain.connect(audioContext.destination);
+      brownNoiseSource.start();
+      audioOn = true;
+    }
+
+    // Play 100 Hz tone every 18 seconds
+    setInterval(() => {
+      if (chosen && cb.checked) {
+      g.gain.exponentialRampToValueAtTime(0.9, context.currentTime + 2.5);
+      setTimeout(() => {
+        g.gain.exponentialRampToValueAtTime(0.1, context.currentTime + 2.5);
+      }, 3500);
+      } else {
+        g.gain.exponentialRampToValueAtTime(0.001, context.currentTime + .5);
+      }
+    }, 18000);
+  } else {
+    g.gain.value = 0;
+    noiseGain.gain.value = 0;
+  }
+}
+
+function audioToggle() {
+  if (cb.checked) {
+    if (chosen) {
+      noiseGain.gain.value = 0.15;
+    } else if (!chosen) {
+      g.gain.exponentialRampToValueAtTime(0.001, context.currentTime + .5);
+      noiseGain.gain.value = 0;
+    }
   }
 }
