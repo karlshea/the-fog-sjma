@@ -86,6 +86,10 @@ a {
   color: #ffffff;
 }
 
+a:hover {
+  color: lightgray;
+}
+
 footer {
   text-align: right;
   font-weight: 100;
@@ -112,6 +116,10 @@ a.mobile-link {
 
 a.desktop-link {
   display: inline;
+}
+
+a:hover.desktoplink {
+  color: gainsboro0;
 }
 
 p.mobile-redirect-text {
@@ -149,6 +157,14 @@ img.statement-img {
   display: flex;
   margin: auto;
   width: 100%;
+}
+
+img:hover.statement-img {
+  opacity: 0.8;
+}
+
+h1:hover.header-link {
+  color: gainsboro;
 }
 
 .mc-two-col {
