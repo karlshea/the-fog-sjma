@@ -174,6 +174,9 @@ function init() {
     blocker.style.display = "none";
     start = true;
     audioStart();
+    if (audioOn) {
+      audioToggle();
+    }
   });
 
   controls = new DragControls([...objects], camera, effect.domElement);
@@ -205,6 +208,7 @@ function onKeyUp(event) {
     instructions.style.display = "";
     blocker.style.display = "";
     start = false;
+    audioToggle();
   }
 }
 
@@ -249,10 +253,10 @@ function onClick(event) {
 function textureAnimation() {
   plane.position.x += textureX;
   plane.position.y += textureY;
-  if (plane.position.x >= 4) {
+  if (plane.position.x >= 3.5) {
     textureX = Math.random() * -0.001;
     console.log("x neg");
-  } else if (plane.position.x <= -4) {
+  } else if (plane.position.x <= -3.5) {
     textureX = Math.random() * 0.001;
     console.log("x pos");
   }
@@ -268,10 +272,10 @@ function textureAnimation() {
 function textureAnimation2() {
   plane2.position.x += textureX2;
   plane2.position.y += textureY2;
-  if (plane2.position.x >= 3.5) {
+  if (plane2.position.x >= 3) {
     textureX2 = Math.random() * -0.001;
     console.log("x2 neg");
-  } else if (plane2.position.x <= -3.5) {
+  } else if (plane2.position.x <= -3) {
     textureX2 = Math.random() * 0.001;
     console.log("x2 pos");
   }
@@ -312,4 +316,67 @@ function animate() {
 
 function render() {
   effect.render(scene, camera);
+}
+
+// Audio Stuff
+
+var audioOn = false;
+var audioContext;
+var bufferSize;
+var brownNoiseBuffer;
+var data;
+var cb;
+var noiseGain;
+var lastOut = 0;
+var brownNoiseSource;
+
+function audioStart() {
+  // Initialize AudioContext
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Create a Brown noise buffer
+  bufferSize = 2 * audioContext.sampleRate;
+  brownNoiseBuffer = audioContext.createBuffer(
+    1,
+    bufferSize,
+    audioContext.sampleRate
+  );
+  data = brownNoiseBuffer.getChannelData(0);
+
+  cb = document.querySelector("#audioCheck");
+  console.log(cb.checked);
+
+  lastOut = 0;
+
+  if (cb.checked) {
+    if (!audioOn) {
+      for (let i = 0; i < bufferSize; i++) {
+        const whiteNoise = Math.random() * 2 - 1;
+        data[i] = (lastOut + 0.02 * whiteNoise) / 1.02;
+        lastOut = data[i];
+        data[i] *= 3.5;
+      }
+
+      // Play brown noise
+      brownNoiseSource = audioContext.createBufferSource();
+      brownNoiseSource.buffer = brownNoiseBuffer;
+      brownNoiseSource.loop = true;
+      noiseGain = audioContext.createGain();
+      noiseGain.gain.value = 0.15;
+      brownNoiseSource.connect(noiseGain);
+      noiseGain.connect(audioContext.destination);
+      brownNoiseSource.start();
+      audioOn = true;
+    }
+  } 
+}
+
+function audioToggle() {
+  if (cb.checked) {
+    if (start) {
+      noiseGain.gain.value = 0.15;
+    } else if (!start) {
+      noiseGain.gain.value = 0;
+    }
+  }
 }
