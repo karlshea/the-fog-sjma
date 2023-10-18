@@ -25,7 +25,8 @@ let camera,
   textGeometry,
   text,
   matDark,
-  color2;
+  color2,
+  fogUtterance;
 
 let fogTexts = [
   "The fog had now buried all heaven.",
@@ -450,7 +451,7 @@ function textRender() {
 
   if (!spoken) {
     if (text.position.y > 5) {
-      let fogUtterance = new SpeechSynthesisUtterance(message);
+      fogUtterance = new SpeechSynthesisUtterance(message);
       fogUtterance.pitch = 0.01;
       fogUtterance.rate = 0.1;
       if (cb.checked && chosen) {
