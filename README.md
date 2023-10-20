@@ -1,4 +1,5 @@
-# The Fog - By [Chelsea Thompto](https://chelsea.technology/)
+# The Fog
+## By [Chelsea Thompto](https://chelsea.technology/)
 A digital projects commission for the [San José Museum of Art](https://sjmusart.org/). <br/>
 The project can be viewed here: [https://sjmusart.org/digital-projects/chelsea-thompto](https://sjmusart.org/digital-projects/chelsea-thompto)
 
