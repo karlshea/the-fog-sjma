@@ -1,5 +1,6 @@
 # The Fog - By [Chelsea Thompto](https://chelsea.technology/)
 A digital projects commission for the [San José Museum of Art](https://sjmusart.org/).
+The project can be viewed here: [https://sjmusart.org/digital-projects/chelsea-thompto](https://sjmusart.org/digital-projects/chelsea-thompto)
 
 ## Overview
 This work is comprised of 3 "acts" exploring our relationship to fog as a society and the potential for fog to serve as a positive role model for trans embodiment. Each act is built as a procedurally generated 3D space using [three.js](https://threejs.org/). The work has been designed as an website without ads or tracking and with intentionally open source code. Sustainability and accessibility also informed the design choices for the site.
@@ -47,7 +48,7 @@ Outside of the conceptual framework for this piece, there were two other main co
 ### Accessibility
 One of the things that drew me to making browser-based work in the first place was the idea that it would lower the barrier for entry to people compared to a traditional gallery installation. That being said, I also realize that websites are not inherently accessible to all people so I wanted to consider how best to make an experience like the one I created here accessible to more people. Outside of the standard considerations such as alt tags and color contrast, there where two main hurdles: the 3D scenes themselves and the extensive use of ASCII symbols to imply fog: 
 
-- For the 3D scenes. I decided to create separate descriptive text pages that are linked to each act in order to give folks unable to engage with the 3D space and/or its controls. These pages describe the aspects of the work and also link to a video walkthrough of the space.
+- For the 3D scenes. I decided to create separate descriptive text pages that are linked to each act in order to give folks unable to engage with the 3D space and/or its controls. These pages describe the aspects of the work and also link to a video walkthrough of the space. The video walkthroughs can be viewed here: [https://vimeo.com/showcase/10734019](https://vimeo.com/showcase/10734019)
 
 - For the symbols being used to mimic fog with readable text interspersed, I decided to use [aria roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) and [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to generate screen reader labels for the ASCII fog text clouds that append the legible text only, allowing screen readers to access the legible the text.
 
