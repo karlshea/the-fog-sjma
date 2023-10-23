@@ -51,7 +51,7 @@ function init() {
     uniforms: {
       tExplosion: {
         type: "t",
-        value: THREE.ImageUtils.loadTexture("../../assets/fog8.png"),
+        value: THREE.ImageUtils.loadTexture("../assets/fog8.png"),
       },
       time: {
         // float initialized to 0
