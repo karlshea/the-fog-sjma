@@ -89,9 +89,9 @@ function init() {
   group = new THREE.Group();
   scene.add(group);
 
-  var initPlaneX = (Math.random() - 1) * 4;
+  var initPlaneX = (Math.random() - 1) * 3.4;
   var initPlaneY = (Math.random() - 1) * 2;
-  var initPlaneX2 = (Math.random() - 1) * 3.5;
+  var initPlaneX2 = (Math.random() - 1) * 2.9;
   var initPlaneY2 = (Math.random() - 1) * 2;
   console.log("init pos 1:" + initPlaneX + initPlaneY);
   console.log("init pos 2:" + initPlaneX2 + initPlaneY2);
