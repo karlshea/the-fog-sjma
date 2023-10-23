@@ -183,7 +183,7 @@ function init() {
     uniforms: {
       tExplosion: {
         type: "t",
-        value: THREE.ImageUtils.loadTexture("../../assets/fog6.png"),
+        value: THREE.ImageUtils.loadTexture("../assets/fog6.png"),
       },
       time: {
         // float initialized to 0
@@ -201,7 +201,7 @@ function init() {
     uniforms: {
       tExplosion: {
         type: "t",
-        value: THREE.ImageUtils.loadTexture("../../assets/fog6id.png"),
+        value: THREE.ImageUtils.loadTexture("../assets/fog6id.png"),
       },
       time: {
         // float initialized to 0
@@ -255,7 +255,7 @@ function init() {
 
   // Initial text
 
-  textLoader.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+  textLoader.load("../assets/IBM_Plex_Mono_Regular.json", function (font) {
     // Define font color
     color2 = 0xdfdfdf;
     // Define font material
@@ -418,7 +418,7 @@ function textRender() {
       otherTexts[i].material.dispose();
       scene.remove(otherTexts[i]);
     }
-    textLoader.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+    textLoader.load("../assets/IBM_Plex_Mono_Regular.json", function (font) {
       // Define font color
       color2 = 0xdfdfdf;
       // Define font material

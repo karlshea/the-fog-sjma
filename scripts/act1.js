@@ -171,7 +171,7 @@ function init() {
     uniforms: {
       tExplosion: {
         type: "t",
-        value: THREE.ImageUtils.loadTexture("../../assets/fog6.png"),
+        value: THREE.ImageUtils.loadTexture("../assets/fog6.png"),
       },
       time: {
         // float initialized to 0
@@ -188,7 +188,7 @@ function init() {
     uniforms: {
       tExplosion: {
         type: "t",
-        value: THREE.ImageUtils.loadTexture("../../assets/fog6id.png"),
+        value: THREE.ImageUtils.loadTexture("../assets/fog6id.png"),
       },
       time: {
         // float initialized to 0
@@ -210,7 +210,7 @@ function init() {
     uniforms: {
       tExplosion: {
         type: "t",
-        value: THREE.ImageUtils.loadTexture("../../assets/fog1.png"),
+        value: THREE.ImageUtils.loadTexture("../assets/fog1.png"),
       },
       time: {
         // float initialized to 0
@@ -247,7 +247,7 @@ function init() {
   scene.add(mesh4);
 
   // Fog graphs
-  const textureI = new THREE.TextureLoader().load("../../assets/graph_1_t.png");
+  const textureI = new THREE.TextureLoader().load("../assets/graph_1_t.png");
   const materialI = new THREE.MeshBasicMaterial({
     map: textureI,
     side: THREE.DoubleSide,
@@ -260,7 +260,7 @@ function init() {
   scene.add(planeI);
 
   const textureI2 = new THREE.TextureLoader().load(
-    "../../assets/graph_2_t.png"
+    "../assets/graph_2_t.png"
   );
   const materialI2 = new THREE.MeshBasicMaterial({
     map: textureI2,
@@ -274,7 +274,7 @@ function init() {
   scene.add(planeI2);
 
   const textureI3 = new THREE.TextureLoader().load(
-    "../../assets/graph_3_t.png"
+    "../assets/graph_3_t.png"
   );
   const materialI3 = new THREE.MeshBasicMaterial({
     map: textureI3,
@@ -288,7 +288,7 @@ function init() {
   scene.add(planeI3);
 
   const textureI4 = new THREE.TextureLoader().load(
-    "../../assets/graph_4_t.png"
+    "../assets/graph_4_t.png"
   );
   const materialI4 = new THREE.MeshBasicMaterial({
     map: textureI4,
@@ -302,7 +302,7 @@ function init() {
   scene.add(planeI4);
 
   const textureI5 = new THREE.TextureLoader().load(
-    "../../assets/graph_5_t.png"
+    "../assets/graph_5_t.png"
   );
   const materialI5 = new THREE.MeshBasicMaterial({
     map: textureI5,
@@ -316,7 +316,7 @@ function init() {
   scene.add(planeI5);
 
   const textureI6 = new THREE.TextureLoader().load(
-    "../../assets/graph_6_t.png"
+    "../assets/graph_6_t.png"
   );
   const materialI6 = new THREE.MeshBasicMaterial({
     map: textureI6,
@@ -349,7 +349,7 @@ function init() {
   scene.add(ambientLight);
 
   // Texts that will move in and out of fog
-  loader3.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+  loader3.load("../assets/IBM_Plex_Mono_Regular.json", function (font) {
     // Define font color
     color = 0xdfdfdf;
     // Define font material
@@ -477,7 +477,7 @@ function textAnimation1() {
           "\n" +
           fogTexts[newText * 3 + 2]
       );
-      loader3.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+      loader3.load("../assets/IBM_Plex_Mono_Regular.json", function (font) {
         // Define font color
         color = 0x757575;
         // Define font material
@@ -558,7 +558,7 @@ function textAnimation2() {
           "\n" +
           fogTextsB[newTextB * 3 + 2]
       );
-      loader3.load("../../assets/IBM_Plex_Mono_Regular.json", function (font) {
+      loader3.load("../assets/IBM_Plex_Mono_Regular.json", function (font) {
         // Define font color
         //color = 0xdfdfdf;
         color = 0x757575;

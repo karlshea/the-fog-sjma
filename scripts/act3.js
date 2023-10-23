@@ -97,7 +97,7 @@ function init() {
   console.log("init pos 2:" + initPlaneX2 + initPlaneY2);
 
   const texture = new THREE.TextureLoader().load(
-    "../../assets/fog_trans_sm1_e.png"
+    "../assets/fog_trans_sm1_e.png"
   );
   const material = new THREE.MeshBasicMaterial({
     map: texture,
@@ -109,7 +109,7 @@ function init() {
   scene.add(plane);
 
   const texture2 = new THREE.TextureLoader().load(
-    "../../assets/fog_trans_sm1_i_ee.png"
+    "../assets/fog_trans_sm1_i_ee.png"
   );
   const material2 = new THREE.MeshBasicMaterial({
     map: texture2,
