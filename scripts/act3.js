@@ -19,7 +19,7 @@ let plane;
 let plane2;
 let overlayText;
 let otOp = 1;
-let rate = 0.0005;
+let rate = 0.001;
 let start = false;
 
 let fogTexts = [
@@ -157,10 +157,11 @@ function init() {
     resolution: 0.25,
     invert: false,
   });
-  effect.setSize(window.innerWidth * 0.9, window.innerHeight * 1.075);
+  effect.setSize(window.innerWidth * 1, window.innerHeight * 1.075);
   effect.domElement.style.color = "white";
   effect.domElement.style.backgroundColor = "black";
   effect.domElement.style.overflow = "hidden";
+  effect.domElement.style.margin = "auto";
   container.appendChild(effect.domElement);
 
   // Identify the html divs for the overlays
