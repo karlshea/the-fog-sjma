@@ -456,9 +456,9 @@ function render() {
 function textAnimation1() {
   if (ticker == 0) {
     if (text.position.z > 1) {
-      text.position.z -= 0.005;
-      text2.position.z -= 0.005;
-      text3.position.z -= 0.005;
+      text.position.z -= 0.01;
+      text2.position.z -= 0.01;
+      text3.position.z -= 0.01;
     } else if (text.position.z <= 1) {
       text.geometry.dispose();
       text.material.dispose();
@@ -524,9 +524,9 @@ function textAnimation1() {
   }
   if (ticker == 1) {
     if (text.position.z < 12) {
-      text.position.z += 0.005;
-      text2.position.z += 0.005;
-      text3.position.z += 0.005;
+      text.position.z += 0.01;
+      text2.position.z += 0.01;
+      text3.position.z += 0.01;
     } else if (text.position.z > 12) {
       ticker = 0;
     }
@@ -537,9 +537,9 @@ function textAnimation1() {
 function textAnimation2() {
   if (ticker2 == 0) {
     if (textB.position.z < 1) {
-      textB.position.z += 0.005;
-      textB2.position.z += 0.005;
-      textB3.position.z += 0.005;
+      textB.position.z += 0.01;
+      textB2.position.z += 0.01;
+      textB3.position.z += 0.01;
     } else if (textB.position.z >= 1) {
       textB.geometry.dispose();
       textB.material.dispose();
@@ -609,9 +609,9 @@ function textAnimation2() {
   }
   if (ticker2 == 1) {
     if (textB.position.z > -12) {
-      textB.position.z -= 0.005;
-      textB2.position.z -= 0.005;
-      textB3.position.z -= 0.005;
+      textB.position.z -= 0.01;
+      textB2.position.z -= 0.01;
+      textB3.position.z -= 0.01;
     } else if (textB.position.z < 12) {
       ticker2 = 0;
     }

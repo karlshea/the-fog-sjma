@@ -393,19 +393,19 @@ function animate() {
 
 function textRender() {
   if (text.position.y < 200) {
-    text.position.y += 0.075;
+    text.position.y += 0.15;
     for (let i = 0; i < 20; i++) {
-      otherTexts[i].position.y += 0.075;
+      otherTexts[i].position.y += 0.15;
     }
   } else if (text.position.y >= 200 && text.position.y < 350) {
-    text.position.y += 0.3;
+    text.position.y += 0.5;
     for (let i = 0; i < 20; i++) {
-      otherTexts[i].position.y += 0.3;
+      otherTexts[i].position.y += 0.5;
     }
   } else if (text.position.y >= 350) {
-    text.position.y += 0.6;
+    text.position.y += 0.9;
     for (let i = 0; i < 20; i++) {
-      otherTexts[i].position.y += 0.6;
+      otherTexts[i].position.y += 0.9;
     }
   }
 
